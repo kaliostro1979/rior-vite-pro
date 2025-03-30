@@ -16,7 +16,7 @@ const LoaderIcon = ({className}) => {
                 <stop offset={1} stopColor="#000000" stopOpacity={0}/>
             </radialGradient>
             <circle
-                transform-origin="center"
+                transformOrigin="center"
                 fill="none"
                 stroke="url(#a12)"
                 strokeWidth={15}
@@ -39,7 +39,7 @@ const LoaderIcon = ({className}) => {
                 />
             </circle>
             <circle
-                transform-origin="center"
+                transformOrigin="center"
                 fill="none"
                 opacity={0.2}
                 stroke="#000000"
