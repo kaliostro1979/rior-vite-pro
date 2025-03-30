@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from "../../Components/Global/Buttons/Button";
 import InputSimple from "../../Components/Global/Inputs/InputSimple";
-import InputFile from "../../Components/Global/Inputs/InputFile";
+import InputFileButton from "../../Components/Global/Inputs/InputFileButton.jsx";
 import CartIcon from "../../Components/Global/Icons/CartIcon";
 import CloseIcon from "../../Components/Global/Icons/CloseIcon";
 import FilterIcon from "../../Components/Global/Icons/FilterIcon";
@@ -172,7 +172,7 @@ const GlobalComponents = () => {
                                          label={"Test input"} errorMessage={"This field is required"}/>
                         </li>
                         <li>
-                            <InputFile/>
+                            <InputFileButton/>
                         </li>
                     </ul>
                 </div>

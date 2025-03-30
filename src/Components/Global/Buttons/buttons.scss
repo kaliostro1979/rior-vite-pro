@@ -1,11 +1,15 @@
 .button {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   border: 1px solid var(--primary-black);
   font-size: 14px;
   line-height: 1;
   cursor: pointer;
   max-width: max-content;
+  min-width: 120px;
 
   &:disabled {
     background-color: var(--gray-disabled);

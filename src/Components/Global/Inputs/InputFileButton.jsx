@@ -1,7 +1,7 @@
 import React from 'react';
 import PlusIcon from "../Icons/PlusIcon";
 
-const InputFile = ({id, name, placeholder}) => {
+const InputFileButton = ({id, name, placeholder}) => {
     return (
         <div className={"file-input__container"}>
             <label htmlFor={id} className={"file-input__container-label"}>
@@ -17,4 +17,4 @@ const InputFile = ({id, name, placeholder}) => {
     );
 };
 
-export default InputFile;
+export default InputFileButton;
