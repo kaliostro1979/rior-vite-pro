@@ -1,4 +1,5 @@
-import FileUploadForm from "../../Components/FileUploadForm/FileUploadForm";
+import FileUploadForm from "../../Components/FloorPlanUploadForm/FileUploadForm";
+
 
 const Home = () => {
     return (

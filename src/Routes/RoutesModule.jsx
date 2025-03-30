@@ -12,9 +12,9 @@ const RoutesModule = () => {
         <Routes>
             <Route path={`/`} element={<Home/>}/>
             <Route path={`global-components`} element={<GlobalComponents/>}/>
-            <Route path={`wizard`} element={<Wizard/>}>
+           {/* <Route path={`wizard`} element={<Wizard/>}>
                 <Route path={`step-${step}`} element={<WizardStep step={step}/>}/>
-            </Route>
+            </Route>*/}
         </Routes>
     );
 };

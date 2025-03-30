@@ -1,9 +1,10 @@
 import "../Buttons/buttons.scss"
 import {useEffect, useState} from "react";
 import { useDispatch } from 'react-redux'
-import {setStep} from "../../../features/steps/wizardStepsSlice.js";
 
-const FileUploadInput = ({heading, subheading, id, labelText, size = "large", icon}) => {
+
+
+const FileUploadInput = ({heading, subheading, id, labelText, size = "large", icon, action}) => {
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState()
     const dispatch = useDispatch()
@@ -12,15 +13,18 @@ const FileUploadInput = ({heading, subheading, id, labelText, size = "large", ic
         if (file){
             const objectUrl = URL.createObjectURL(file)
             setPreview(objectUrl)
-            dispatch(setPreview(objectUrl))
+            if (action){
+                //dispatch(action(objectUrl))
+                dispatch(action(file))
+            }
 
             return () => URL.revokeObjectURL(objectUrl)
         }
-    }, [file, dispatch])
+    }, [file, dispatch, action])
 
     const handleFilesChange = (event)=>{
         if (!event.target.files || event.target.files.length === 0) {
-            setFile(undefined)
+            setFile(null)
             return
         }
         setFile(event.target.files[0])

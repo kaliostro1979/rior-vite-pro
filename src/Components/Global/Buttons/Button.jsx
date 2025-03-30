@@ -6,7 +6,7 @@ const Button = ({text, callback, size = "small", button_type = "primary", type= 
         <button
             type={type}
             className={`button button-${button_type} button__${size}`}
-            onClick={()=>callback()}
+            onClick={()=>callback ? callback() : null}
             disabled={disabled}
         >
             {text}
