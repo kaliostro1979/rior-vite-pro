@@ -1,0 +1,43 @@
+.button {
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--primary-black);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  max-width: max-content;
+
+  &:disabled {
+    background-color: var(--gray-disabled);
+    border-color: var(--gray-disabled);
+    color: var(--gray-dark);
+  }
+
+  &__small {
+    padding: 10px 36px;
+    min-width: 120px;
+  }
+
+  &__large {
+    padding: 16px 36px;
+    min-width: 208px;
+  }
+
+  &-primary {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+  }
+
+  &-secondary {
+    background-color: var(--primary-white);
+    color: var(--primary-black);
+
+    &:hover:not(:disabled) {
+      background-color: var(--gray-light);
+    }
+  }
+}
