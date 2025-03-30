@@ -1,6 +1,31 @@
 import "../Buttons/buttons.scss"
+import {useEffect, useState} from "react";
+import { useDispatch } from 'react-redux'
+import {setStep} from "../../../features/steps/wizardStepsSlice.js";
 
 const FileUploadInput = ({heading, subheading, id, labelText, size = "large", icon}) => {
+    const [file, setFile] = useState(null)
+    const [preview, setPreview] = useState()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (file){
+            const objectUrl = URL.createObjectURL(file)
+            setPreview(objectUrl)
+            dispatch(setPreview(objectUrl))
+
+            return () => URL.revokeObjectURL(objectUrl)
+        }
+    }, [file, dispatch])
+
+    const handleFilesChange = (event)=>{
+        if (!event.target.files || event.target.files.length === 0) {
+            setFile(undefined)
+            return
+        }
+        setFile(event.target.files[0])
+    }
+
     return (
         <div className={"flex justify-center items-center p-8 border border-dashed border-gray-label rounded-xl"} style={{maxWidth: size === "large" ? "100%" : "440px"}}>
             <div className={"flex flex-col items-center gap-y-3 max-w-[291px]"}>
@@ -9,8 +34,9 @@ const FileUploadInput = ({heading, subheading, id, labelText, size = "large", ic
                 </div>
                 <p className={"paragraph-large"}>{heading}</p>
                 <span className={"paragraph-small text-gray"}>{subheading}</span>
-                <input id={id} type={"file"} className={"w-0 h-0 invisible"}/>
+                <input id={id} type={"file"} className={"w-0 h-0 invisible"} onChange={handleFilesChange}/>
                 <label htmlFor={id} className={"button button-primary button__small"}>{labelText}</label>
+                {file &&  <img src={preview} /> }
             </div>
         </div>
     );

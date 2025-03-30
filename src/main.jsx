@@ -5,9 +5,13 @@ import App from './App.jsx'
 import "../src/styles/global/global.scss"
 import "../src/styles/global/variables.scss"
 import "../src/styles/global/typography.scss"
+import {Provider} from 'react-redux'
+import {store} from "./redux/store.js";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <App/>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </StrictMode>,
 )
