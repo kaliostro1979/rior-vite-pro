@@ -1,0 +1,19 @@
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .loader {
+    border: 3px solid currentColor;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }

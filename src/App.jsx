@@ -1,16 +1,22 @@
-import {BrowserRouter} from "react-router-dom";
-import RoutesModule from "./Routes/RoutesModule.jsx";
-import Header from "./Components/Header/Header.jsx";
+import { BrowserRouter } from 'react-router-dom';
 
+import { Routes } from '@/Components';
+import { Header } from '@/Components/ui';
+import { ErrorBoundary } from '@/Layouts';
+import { AuthProvider } from '@/context';
 
 function App() {
   return (
+    <AuthProvider>
       <BrowserRouter>
-          <Header/>
-          <div className={"container"}>
-              <RoutesModule/>
+        <ErrorBoundary>
+          <Header />
+          <div className={'container'}>
+            <Routes />
           </div>
+        </ErrorBoundary>
       </BrowserRouter>
+    </AuthProvider>
   );
 }
 
