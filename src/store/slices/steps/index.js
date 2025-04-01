@@ -18,7 +18,7 @@ const initialState = {
   },
 
   // Wizard state
-  currentStep: 1,
+  currentStep: STEPS.floorPlan,
   stepsCompleted: {
     [STEPS.floorPlan]: false,
     [STEPS.design]: false,
