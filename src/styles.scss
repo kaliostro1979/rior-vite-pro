@@ -54,7 +54,7 @@
       }
   
       .wizard-steps__item-step {
-        @apply relative lg:flex-col flex-row lg:rounded-full border border-gray-medium text-sm leading-none text-primary-black bg-gray-medium;
+        @apply relative lg:flex-col flex-row lg:rounded-full border lg:border-gray-border border-gray-medium text-sm leading-none text-primary-black lg:bg-primary-white bg-gray-medium;
 
         .wizard-steps__item-mobile {
           @apply w-0 h-full transition-all duration-300 ease-linear;

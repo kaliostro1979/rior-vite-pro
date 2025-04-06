@@ -41,13 +41,13 @@ export const StepsLayout = ({ children }) => {
   }, [dispatch, isLastStep, navigate, currentStep, stepsCompleted]);
 
   const handleBack = useCallback(() => {
-    if (floorPlanUrl) {
+  /*  if (floorPlanUrl) {
       dispatch(setFloorPlan(null));
       dispatch(setFloorPlanUrl(null));
     } else {
       dispatch(setDesign(null));
       dispatch(setDesignUrl(null));
-    }
+    }*/
     if (currentStep === STEPS.floorPlan) {
       navigate(ROUTES.home);
     } else {
