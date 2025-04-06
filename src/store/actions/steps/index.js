@@ -1,138 +1,180 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
-  setFloorPlan,
-  setFloorPlanUrl,
-  setDesign,
-  setDesignUrl,
-  setErrors,
-  setSubmitting,
-  setSubmitted,
+    setFloorPlan,
+    setFloorPlanUrl,
+    setDesign,
+    setDesignUrl,
+    setErrors,
+    setSubmitting,
+    setSubmitted,
 } from '@/store/slices/steps';
 
 import {
-  ACTION_NAME_UPLOAD_FLOOR_PLAN,
-  ACTION_NAME_UPLOAD_DESIGN,
-  ACTION_NAME_CLEAN_OBJECT_URLS,
-  ACTION_NAME_SUBMIT_WIZARD_DATA,
-  VALID_TYPES,
+    ACTION_NAME_UPLOAD_FLOOR_PLAN,
+    ACTION_NAME_UPLOAD_DESIGN,
+    ACTION_NAME_CLEAN_OBJECT_URLS,
+    ACTION_NAME_SUBMIT_WIZARD_DATA,
+    VALID_TYPES,
 } from './constants';
+import { MAX_FILE_SIZE } from '@/constants/file';
 
 export const uploadFloorPlan = createAsyncThunk(
-  ACTION_NAME_UPLOAD_FLOOR_PLAN,
-  async (file, { dispatch, rejectWithValue }) => {
-    try {
-      if (!file) {
-        return rejectWithValue('No file selected');
-      }
+    ACTION_NAME_UPLOAD_FLOOR_PLAN,
+    async (file, {dispatch, rejectWithValue}) => {
 
-      if (!VALID_TYPES.includes(file.type)) {
-        dispatch(
-          setErrors({
-            floorPlan: 'Invalid file type. Please upload a PDF or PNG file.',
-          })
-        );
+        try {
+            if (!file) {
+                return rejectWithValue('No file selected');
+            }
 
-        return rejectWithValue('Invalid file type');
-      }
+            if (!VALID_TYPES.includes(file.type)) {
+                dispatch(
+                    setErrors({
+                        floorPlan: {
+                            heading: "Invalid file type",
+                            message: "Invalid file type. Please upload a PDF or PNG file."
+                        },
+                    })
+                );
 
-      dispatch(setFloorPlan(file));
+                return rejectWithValue('Invalid file type');
+            }
 
-      const objectUrl = URL.createObjectURL(file);
 
-      dispatch(setFloorPlanUrl(objectUrl));
 
-      return { success: true, objectUrl };
-    } catch (error) {
-      dispatch(setErrors({ floorPlan: 'Failed to upload floor plan.' }));
+            if (file.size >= MAX_FILE_SIZE) {
+                dispatch(
+                    setErrors({
+                        floorPlan: {
+                            heading: 'File to large',
+                            message: 'Max file size should be 2mb'
+                        },
+                    })
+                );
 
-      return rejectWithValue(error.message);
+                return rejectWithValue('Wrong file size');
+            }
+
+            dispatch(setErrors({
+                floorPlan: null,
+            }))
+            dispatch(setFloorPlan(file));
+
+            const objectUrl = URL.createObjectURL(file);
+
+            dispatch(setFloorPlanUrl(objectUrl));
+
+            return {success: true, objectUrl};
+        } catch (error) {
+            dispatch(setErrors({floorPlan: 'Failed to upload floor plan.'}));
+
+            return rejectWithValue(error.message);
+        }
     }
-  }
 );
 
 export const uploadDesign = createAsyncThunk(
-  ACTION_NAME_UPLOAD_DESIGN,
-  async (file, { dispatch, rejectWithValue }) => {
-    try {
-      if (!file) {
-        return rejectWithValue('No file selected');
-      }
+    ACTION_NAME_UPLOAD_DESIGN,
+    async (file, {dispatch, rejectWithValue}) => {
+        try {
+            if (!file) {
+                return rejectWithValue('No file selected');
+            }
 
-      if (!VALID_TYPES.includes(file.type)) {
-        dispatch(
-          setErrors({
-            design: 'Invalid file type. Please upload a PDF or PNG file.',
-          })
-        );
+            if (!VALID_TYPES.includes(file.type)) {
+                dispatch(
+                    setErrors({
+                        design: {
+                            heading: "Invalid file type",
+                            message: "Invalid file type. Please upload a PDF or PNG file."
+                        }
+                    })
+                );
 
-        return rejectWithValue('Invalid file type');
-      }
+                return rejectWithValue('Invalid file type');
+            }
 
-      dispatch(setDesign(file));
+            if (file.size >= MAX_FILE_SIZE) {
+                dispatch(
+                    setErrors({
+                        design: {
+                            heading: 'File to large',
+                            message: 'Max file size should be 2mb'
+                        },
+                    })
+                );
 
-      const objectUrl = URL.createObjectURL(file);
+                return rejectWithValue('Wrong file size');
+            }
 
-      dispatch(setDesignUrl(objectUrl));
+            dispatch(setErrors({
+                design: null,
+            }))
+            dispatch(setDesign(file));
 
-      return { success: true, objectUrl };
-    } catch (error) {
-      dispatch(setErrors({ design: 'Failed to upload design.' }));
+            const objectUrl = URL.createObjectURL(file);
 
-      return rejectWithValue(error.message);
+            dispatch(setDesignUrl(objectUrl));
+
+            return {success: true, objectUrl};
+        } catch (error) {
+            dispatch(setErrors({design: 'Failed to upload design.'}));
+
+            return rejectWithValue(error.message);
+        }
     }
-  }
 );
 
 export const cleanupObjectUrls = createAsyncThunk(
-  ACTION_NAME_CLEAN_OBJECT_URLS,
-  async (_, { getState }) => {
-    const state = getState();
+    ACTION_NAME_CLEAN_OBJECT_URLS,
+    async (_, {getState}) => {
+        const state = getState();
 
-    if (state.stepWizard.floorPlanUrl) {
-      URL.revokeObjectURL(state.stepWizard.floorPlanUrl);
-    }
-    if (state.stepWizard.designUrl) {
-      URL.revokeObjectURL(state.stepWizard.designUrl);
-    }
+        if (state.stepWizard.floorPlanUrl) {
+            URL.revokeObjectURL(state.stepWizard.floorPlanUrl);
+        }
+        if (state.stepWizard.designUrl) {
+            URL.revokeObjectURL(state.stepWizard.designUrl);
+        }
 
-    return { success: true };
-  }
+        return {success: true};
+    }
 );
 
 // Submit the wizard data
 export const submitWizardData = createAsyncThunk(
-  ACTION_NAME_SUBMIT_WIZARD_DATA,
-  async (_, { dispatch, getState, rejectWithValue }) => {
-    try {
-      dispatch(setSubmitting(true));
+    ACTION_NAME_SUBMIT_WIZARD_DATA,
+    async (_, {dispatch, getState, rejectWithValue}) => {
+        try {
+            dispatch(setSubmitting(true));
 
-      const state = getState().stepWizard;
+            const state = getState().stepWizard;
 
-      const allStepsCompleted = Object.values(state.stepsCompleted).every(
-        step => step === true
-      );
+            const allStepsCompleted = Object.values(state.stepsCompleted).every(
+                step => step === true
+            );
 
-      if (!allStepsCompleted) {
-        return rejectWithValue('Please complete all steps before submitting.');
-      }
+            if (!allStepsCompleted) {
+                return rejectWithValue('Please complete all steps before submitting.');
+            }
 
-      const formData = new FormData();
+            const formData = new FormData();
 
-      formData.append('floorPlan', state.floorPlan);
-      formData.append('design', state.design);
+            formData.append('floorPlan', state.floorPlan);
+            formData.append('design', state.design);
 
-      Object.keys(state.details).forEach(key => {
-        formData.append(`details[${key}]`, state.details[key]);
-      });
+            Object.keys(state.details).forEach(key => {
+                formData.append(`details[${key}]`, state.details[key]);
+            });
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
-      dispatch(setSubmitted(true));
-      return { success: true };
-    } catch (error) {
-      return rejectWithValue(error.message || 'Failed to submit data');
-    } finally {
-      dispatch(setSubmitting(false));
+            dispatch(setSubmitted(true));
+            return {success: true};
+        } catch (error) {
+            return rejectWithValue(error.message || 'Failed to submit data');
+        } finally {
+            dispatch(setSubmitting(false));
+        }
     }
-  }
 );

@@ -25,6 +25,10 @@
     &__large {
       padding: 16px 36px;
       min-width: 208px;
+
+      @media (max-width: 990px) {
+        min-width: 155px;
+      }
     }
   
     &-primary {

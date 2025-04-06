@@ -16,12 +16,6 @@ const Step = () => {
   const isSubmitted = useSelector(state => state.stepWizard.isSubmitted);
 
   useEffect(() => {
-    return () => {
-      dispatch(cleanupObjectUrls());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
     if (isSubmitted) {
       navigate('/success');
     }

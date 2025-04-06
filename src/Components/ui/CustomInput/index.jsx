@@ -15,7 +15,7 @@ export const CustomInput = ({
 }) => {
   return (
     <div className={'input-container'}>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className={"text-gray-label text-sm leading-none"}>{label}</label>
       <input
         id={id}
         type={type}

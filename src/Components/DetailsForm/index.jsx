@@ -63,7 +63,7 @@ export const DetailsForm = () => {
         />
         <CustomInput
           id="sqm"
-          type="text"
+          type="number"
           name="sqm"
           placeholder="4.5m²"
           label="SQM"
@@ -73,7 +73,7 @@ export const DetailsForm = () => {
         />
         <CustomInput
           id="ceiling-height"
-          type="text"
+          type="number"
           name="ceilingHeight"
           placeholder="2.7m"
           label="Ceiling Height"
@@ -83,7 +83,7 @@ export const DetailsForm = () => {
         />
         <CustomInput
           id="door-width"
-          type="text"
+          type="number"
           name="doorWidth"
           placeholder="0.80m"
           label="Door Width"

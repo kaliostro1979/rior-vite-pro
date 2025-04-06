@@ -3,6 +3,7 @@ export const ROUTES = {
   steps: '/steps',
   step: '/steps/step/:id',
   success: '/success',
+  globalComponents: '/global-components'
 };
 
 export const STEPS = {

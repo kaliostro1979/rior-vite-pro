@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ROUTES, STEPS } from '@/constants/routes';
 import { StepsNavigation } from '@/Components';
-import { CustomButton } from '@/Components/ui';
+import {CustomButton, Toast} from '@/Components/ui';
 import { setCurrentStep } from '@/store/slices/steps';
 import { submitWizardData } from '@/store/actions/steps';
 
@@ -15,8 +15,10 @@ export const StepsLayout = ({ children }) => {
   const { id } = useParams();
   const currentStep = parseInt(id, 10) || STEPS.floorPlan;
 
-  const { stepsCompleted, isSubmitting } = useSelector(
-    state => state.stepWizard
+  const { stepsCompleted, isSubmitting, errors } = useSelector(
+    state => {
+      return state.stepWizard
+    }
   );
 
   const isLastStep = currentStep === STEPS.details;
@@ -47,15 +49,21 @@ export const StepsLayout = ({ children }) => {
 
   const isNextButtonDisabled = !stepsCompleted[currentStep] || isSubmitting;
 
+ /* const step = Object.keys(STEPS).map((step) => step).filter((el) => el === currentStep);*/
+
+  const foundError = Object.entries(STEPS)?.find(([_, value]) => value === currentStep)?.[0];
+
   return (
     <div className="steps-layout">
+      
+      <Toast message={errors[foundError]}/>
       <StepsNavigation />
 
       <div className="steps-content mb-[40px] w-full max-w-[800px] m-auto">
         {children}
       </div>
 
-      <div className="flex justify-center items-center gap-x-[30px]">
+      <div className="flex justify-center items-center lg:gap-x-[30px] gap-x-4">
         <CustomButton
           button_type="secondary"
           size="large"

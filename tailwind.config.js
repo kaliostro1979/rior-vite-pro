@@ -16,6 +16,7 @@ export default {
         "gray-border": "var(--gray-border)",
         "gray-border-light": "var(--gray-border-light)",
         "gray-label": "var(--gray-label)",
+        "gray-blurred": "var(--gray-blurred)",
         "error-red": "var(--error-red)",
         "error-red-light": "var(--error-red-light)"
       },

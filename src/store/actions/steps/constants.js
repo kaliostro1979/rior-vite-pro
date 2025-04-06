@@ -3,4 +3,4 @@ export const ACTION_NAME_UPLOAD_DESIGN = 'ACTION_NAME_UPLOAD_DESIGN';
 export const ACTION_NAME_CLEAN_OBJECT_URLS = 'ACTION_NAME_CLEAN_OBJECT_URLS';
 export const ACTION_NAME_SUBMIT_WIZARD_DATA = 'ACTION_NAME_SUBMIT_WIZARD_DATA';
 
-export const VALID_TYPES = ['image/png', 'image/jpeg', 'application/pdf'];
+export const VALID_TYPES = ['image/png', 'application/pdf'];
