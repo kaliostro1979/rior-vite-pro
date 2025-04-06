@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ROUTES, STEPS } from '@/constants/routes';
 import { StepsNavigation } from '@/Components';
 import {CustomButton, Toast} from '@/Components/ui';
-import { setCurrentStep } from '@/store/slices/steps';
+import {setCurrentStep, setDesign, setDesignUrl, setFloorPlan, setFloorPlanUrl} from '@/store/slices/steps';
 import { submitWizardData } from '@/store/actions/steps';
 
 export const StepsLayout = ({ children }) => {
@@ -15,8 +15,9 @@ export const StepsLayout = ({ children }) => {
   const { id } = useParams();
   const currentStep = parseInt(id, 10) || STEPS.floorPlan;
 
-  const { stepsCompleted, isSubmitting, errors } = useSelector(
+  const { stepsCompleted, isSubmitting, errors, floorPlanUrl } = useSelector(
     state => {
+      console.log(state);
       return state.stepWizard
     }
   );
@@ -40,6 +41,13 @@ export const StepsLayout = ({ children }) => {
   }, [dispatch, isLastStep, navigate, currentStep, stepsCompleted]);
 
   const handleBack = useCallback(() => {
+    if (floorPlanUrl) {
+      dispatch(setFloorPlan(null));
+      dispatch(setFloorPlanUrl(null));
+    } else {
+      dispatch(setDesign(null));
+      dispatch(setDesignUrl(null));
+    }
     if (currentStep === STEPS.floorPlan) {
       navigate(ROUTES.home);
     } else {

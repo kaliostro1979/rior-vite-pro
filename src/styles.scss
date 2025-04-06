@@ -57,7 +57,7 @@
         @apply relative lg:flex-col flex-row lg:rounded-full border border-gray-medium text-sm leading-none text-primary-black bg-gray-medium;
 
         .wizard-steps__item-mobile {
-          @apply w-full h-full;
+          @apply w-0 h-full transition-all duration-300 ease-linear;
         }
   
         &.active {
@@ -67,7 +67,7 @@
           @apply lg:text-primary-white lg:bg-primary-black lg:border-primary-black;
         }
   
-        &.filled {
+        &.filled, &.visited {
           .wizard-steps__item-mobile {
             @apply bg-primary-black border-primary-black w-full;
           }
