@@ -17,12 +17,16 @@ export default {
         "gray-border-light": "var(--gray-border-light)",
         "gray-label": "var(--gray-label)",
         "gray-blurred": "var(--gray-blurred)",
+        "gray-blurred-dark": "var(--gray-blurred-dark)",
         "error-red": "var(--error-red)",
         "error-red-light": "var(--error-red-light)"
       },
       fontFamily: {
         "body": "var(--font-body)"
-      }
+      },
+      backdropBlur: {
+        xs: '4px', // Define your own tiny blur
+      },
     },
   },
   plugins: [],
