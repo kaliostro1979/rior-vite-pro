@@ -12,9 +12,8 @@ export const DetailsForm = () => {
 
   const [formData, setFormData] = useState({
     name: details.name || '',
-    sqm: details.sqm || '',
-    ceilingHeight: details.ceilingHeight || '',
-    doorWidth: details.doorWidth || '',
+    ceilingHeight: details.ceilingHeight || 2.7,
+    doorWidth: details.doorWidth || 0.9,
   });
 
   const [errors, setErrors] = useState(DETAILS_FORM_INITIAL_STATE);
@@ -60,16 +59,6 @@ export const DetailsForm = () => {
           value={formData.name}
           onChange={handleChange}
           errorMessage={errors.name}
-        />
-        <CustomInput
-          id="sqm"
-          type="number"
-          name="sqm"
-          placeholder="4.5m²"
-          label="SQM"
-          value={formData.sqm}
-          onChange={handleChange}
-          errorMessage={errors.sqm}
         />
         <CustomInput
           id="ceiling-height"

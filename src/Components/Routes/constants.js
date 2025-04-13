@@ -2,7 +2,6 @@ import { lazy } from 'react';
 
 import { StepsLayout, ProtectedLayout } from '@/Layouts';
 import { ROUTES } from '@/constants';
-import GlobalComponents from "@/Pages/GlobalComponents/index.jsx";
 
 export const APP_ROUTES = [
   {
@@ -24,5 +23,10 @@ export const APP_ROUTES = [
     path: ROUTES.globalComponents,
     layout: null,
     component: lazy(()=>import('@/Pages/GlobalComponents'))
+  },
+  {
+    path: ROUTES.success,
+    layout: null,
+    component: lazy(()=>import('@/Pages/Success'))
   }
 ];

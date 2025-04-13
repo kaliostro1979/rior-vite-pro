@@ -6,6 +6,7 @@ import {CustomButton} from './CustomButton';
 import {Header} from './Header';
 import {Loader} from './Loader';
 import {Toast} from './Toast';
+import { ImageBanner } from './ImageBanner';
 
 export {
     CustomUpload,
@@ -15,5 +16,6 @@ export {
     CustomButton,
     Header,
     Loader,
-    Toast
+    Toast,
+    ImageBanner
 };

@@ -17,7 +17,6 @@ export const StepsLayout = ({ children }) => {
 
   const { stepsCompleted, isSubmitting, errors, floorPlanUrl } = useSelector(
     state => {
-      console.log(state);
       return state.stepWizard
     }
   );
