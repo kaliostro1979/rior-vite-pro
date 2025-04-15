@@ -23,6 +23,7 @@ const parameters = [
 
 const recommendedProducts = [
     {
+        id: "001",
         title: "Wireless Noise-Canceling Headphones",
         price: 199.99,
         url: "https://example.com/products/wireless-headphones",
@@ -30,22 +31,25 @@ const recommendedProducts = [
         category: "Electronics",
         similarProducts: [
             {
+                id: "101",
                 title: "Bluetooth Over-Ear Headphones",
                 price: 149.99,
                 url: "https://example.com/products/bluetooth-headphones",
-                imageUrl: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg",
+                src: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg",
                 category: "Electronics",
             },
             {
+                id: "102",
                 title: "ANC Wireless Earbuds",
                 price: 129.99,
                 url: "https://example.com/products/anc-earbuds",
-                imageUrl: "https://images.pexels.com/photos/339465/pexels-photo-339465.jpeg",
+                src: "https://images.pexels.com/photos/339465/pexels-photo-339465.jpeg",
                 category: "Electronics",
             },
         ],
     },
     {
+        id: "002",
         title: "Ergonomic Office Chair",
         price: 299.0,
         url: "https://example.com/products/ergonomic-chair",
@@ -53,22 +57,25 @@ const recommendedProducts = [
         category: "Furniture",
         similarProducts: [
             {
+                id: "201",
                 title: "Adjustable Mesh Office Chair",
                 price: 199.99,
                 url: "https://example.com/products/mesh-chair",
-                imageUrl: "https://images.pexels.com/photos/776657/pexels-photo-776657.jpeg",
+                src: "https://images.pexels.com/photos/776657/pexels-photo-776657.jpeg",
                 category: "Furniture",
             },
             {
+                id: "202",
                 title: "Executive Leather Chair",
                 price: 349.0,
                 url: "https://example.com/products/leather-chair",
-                imageUrl: "https://images.pexels.com/photos/776658/pexels-photo-776658.jpeg",
+                src: "https://images.pexels.com/photos/776658/pexels-photo-776658.jpeg",
                 category: "Furniture",
             },
         ],
     },
     {
+        id: "003",
         title: "Stainless Steel Smartwatch",
         price: 249.5,
         url: "https://example.com/products/smartwatch",
@@ -76,22 +83,25 @@ const recommendedProducts = [
         category: "Wearables",
         similarProducts: [
             {
+                id: "301",
                 title: "Fitness Tracker Pro",
                 price: 89.99,
                 url: "https://example.com/products/fitness-tracker",
-                imageUrl: "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
+                src: "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
                 category: "Wearables",
             },
             {
+                id: "302",
                 title: "Premium Smartwatch 5",
                 price: 299.99,
                 url: "https://example.com/products/premium-smartwatch",
-                imageUrl: "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
+                src: "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
                 category: "Wearables",
             },
         ],
     },
     {
+        id: "004",
         title: "Portable Espresso Machine",
         price: 119.0,
         url: "https://example.com/products/portable-espresso",
@@ -99,22 +109,25 @@ const recommendedProducts = [
         category: "Kitchen",
         similarProducts: [
             {
+                id: "401",
                 title: "Compact Coffee Maker",
                 price: 89.0,
                 url: "https://example.com/products/compact-coffee-maker",
-                imageUrl: "https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg",
+                src: "https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg",
                 category: "Kitchen",
             },
             {
+                id: "402",
                 title: "Travel Espresso Kit",
                 price: 109.0,
                 url: "https://example.com/products/travel-espresso",
-                imageUrl: "https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg",
+                src: "https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg",
                 category: "Kitchen",
             },
         ],
     },
     {
+        id: "005",
         title: "4K Ultra HD Monitor",
         price: 399.99,
         url: "https://example.com/products/4k-monitor",
@@ -122,17 +135,19 @@ const recommendedProducts = [
         category: "Computers",
         similarProducts: [
             {
+                id: "501",
                 title: '27" QHD Monitor',
                 price: 279.99,
                 url: "https://example.com/products/qhd-monitor",
-                imageUrl: "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
+                src: "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
                 category: "Computers",
             },
             {
+                id: "502",
                 title: '34" UltraWide Monitor',
                 price: 499.99,
                 url: "https://example.com/products/ultrawide-monitor",
-                imageUrl: "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
+                src: "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
                 category: "Computers",
             },
         ],

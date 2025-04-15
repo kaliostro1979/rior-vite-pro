@@ -1,0 +1,1 @@
+export const SIMILAR_PRODUCTS = "similar_products"
