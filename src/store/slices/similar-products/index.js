@@ -4,6 +4,7 @@ import {SIMILAR_PRODUCTS} from "@/store/slices/similar-products/constants.js";
 const initialState = {
     similarProducts: [],
     showModal: false,
+    parentID: null
 }
 
 const similarProducts = createSlice({
@@ -12,7 +13,8 @@ const similarProducts = createSlice({
     reducers: {
         setSelectedProductSimilarProducts: (state, action) => {
             if (action.payload){
-                state.similarProducts = action.payload
+                state.similarProducts = action.payload.similarProducts
+                state.parentID = action.payload.id
             }
         },
         openSimilarProductsModal: (state)=>{
@@ -20,7 +22,6 @@ const similarProducts = createSlice({
         },
         closeSimilarProductsModal: (state)=>{
             state.similarProducts = []
-            console.log(state.similarProducts)
         }
     }
 })
