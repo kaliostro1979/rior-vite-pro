@@ -1,6 +1,8 @@
-import { ImageBanner } from "@/Components/ui"
+import {ImageBanner, ModalOverlay} from "@/Components/ui"
 import BannerImage from "@/assets/images/image-banner.png"
 import {ResultProducts} from "@/Components/index.js";
+import {useDispatch, useSelector} from "react-redux";
+import {closeSimilarProductsModal} from "@/store/slices/similar-products/index.js";
 
 
 const parameters = [
@@ -35,7 +37,7 @@ const recommendedProducts = [
           title: "Bluetooth Over-Ear Headphones",
           price: 149.99,
           url: "https://example.com/products/bluetooth-headphones",
-          src: "https://images.pexels.com/photos/159853/headphones-audio-music-sound-159853.jpeg",
+          imageUrl: "https://plus.unsplash.com/premium_photo-1744193093539-8278a47ae01c?q=80&w=2571&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Electronics",
         },
         {
@@ -43,7 +45,7 @@ const recommendedProducts = [
           title: "ANC Wireless Earbuds",
           price: 129.99,
           url: "https://example.com/products/anc-earbuds",
-          src: "https://images.pexels.com/photos/339465/pexels-photo-339465.jpeg",
+          imageUrl: "https://plus.unsplash.com/premium_photo-1744868563253-cd8479359890?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Electronics",
         },
         {
@@ -51,7 +53,7 @@ const recommendedProducts = [
           title: "Studio Monitor Headphones",
           price: 179.99,
           url: "https://example.com/products/studio-headphones",
-          src: "https://images.pexels.com/photos/8038323/pexels-photo-8038323.jpeg",
+          imageUrl: "https://images.pexels.com/photos/8038323/pexels-photo-8038323.jpeg",
           category: "Electronics",
         },
       ],
@@ -69,7 +71,7 @@ const recommendedProducts = [
           title: "Adjustable Mesh Office Chair",
           price: 199.99,
           url: "https://example.com/products/mesh-chair",
-          src: "https://images.pexels.com/photos/776657/pexels-photo-776657.jpeg",
+          imageUrl: "https://images.pexels.com/photos/776657/pexels-photo-776657.jpeg",
           category: "Furniture",
         },
         {
@@ -77,7 +79,7 @@ const recommendedProducts = [
           title: "Executive Leather Chair",
           price: 349.0,
           url: "https://example.com/products/leather-chair",
-          src: "https://images.pexels.com/photos/776658/pexels-photo-776658.jpeg",
+          imageUrl: "https://images.pexels.com/photos/776658/pexels-photo-776658.jpeg",
           category: "Furniture",
         },
         {
@@ -85,7 +87,7 @@ const recommendedProducts = [
           title: "Reclining Office Chair with Footrest",
           price: 229.0,
           url: "https://example.com/products/reclining-chair",
-          src: "https://images.pexels.com/photos/776661/pexels-photo-776661.jpeg",
+          imageUrl: "https://plus.unsplash.com/premium_photo-1673052882181-1080542b2e02?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Furniture",
         },
       ],
@@ -103,7 +105,7 @@ const recommendedProducts = [
           title: "Fitness Tracker Pro",
           price: 89.99,
           url: "https://example.com/products/fitness-tracker",
-          src: "https://images.pexels.com/photos/9460356/pexels-photo-9460356.jpeg",
+          imageUrl: "https://images.pexels.com/photos/9460356/pexels-photo-9460356.jpeg",
           category: "Wearables",
         },
         {
@@ -111,7 +113,7 @@ const recommendedProducts = [
           title: "Premium Smartwatch 5",
           price: 299.99,
           url: "https://example.com/products/premium-smartwatch",
-          src: "https://images.pexels.com/photos/8282373/pexels-photo-8282373.jpeg",
+          imageUrl: "https://images.pexels.com/photos/8282373/pexels-photo-8282373.jpeg",
           category: "Wearables",
         },
         {
@@ -119,7 +121,7 @@ const recommendedProducts = [
           title: "Round Face Classic Smartwatch",
           price: 199.0,
           url: "https://example.com/products/classic-smartwatch",
-          src: "https://images.pexels.com/photos/7402969/pexels-photo-7402969.jpeg",
+          imageUrl: "https://images.pexels.com/photos/7402969/pexels-photo-7402969.jpeg",
           category: "Wearables",
         },
       ],
@@ -137,7 +139,7 @@ const recommendedProducts = [
           title: "Compact Coffee Maker",
           price: 89.0,
           url: "https://example.com/products/compact-coffee-maker",
-          src: "https://images.pexels.com/photos/3068945/pexels-photo-3068945.jpeg",
+          imageUrl: "https://images.unsplash.com/photo-1744871783125-21a510d12fc1?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Kitchen",
         },
         {
@@ -145,7 +147,7 @@ const recommendedProducts = [
           title: "Travel Espresso Kit",
           price: 109.0,
           url: "https://example.com/products/travel-espresso",
-          src: "https://images.pexels.com/photos/16850663/pexels-photo-16850663.jpeg",
+          imageUrl: "https://images.pexels.com/photos/16850663/pexels-photo-16850663.jpeg",
           category: "Kitchen",
         },
         {
@@ -153,7 +155,7 @@ const recommendedProducts = [
           title: "Single-Serve Capsule Espresso",
           price: 129.0,
           url: "https://example.com/products/single-serve-espresso",
-          src: "https://images.pexels.com/photos/23938274/pexels-photo-23938274.jpeg",
+          imageUrl: "https://images.pexels.com/photos/23938274/pexels-photo-23938274.jpeg",
           category: "Kitchen",
         },
       ],
@@ -171,7 +173,7 @@ const recommendedProducts = [
           title: '27" QHD Monitor',
           price: 279.99,
           url: "https://example.com/products/qhd-monitor",
-          src: "https://images.pexels.com/photos/838413/pexels-photo-838413.jpeg",
+          imageUrl: "https://images.pexels.com/photos/838413/pexels-photo-838413.jpeg",
           category: "Computers",
         },
         {
@@ -179,7 +181,7 @@ const recommendedProducts = [
           title: '34" UltraWide Monitor',
           price: 499.99,
           url: "https://example.com/products/ultrawide-monitor",
-          src: "https://images.pexels.com/photos/2566581/pexels-photo-2566581.jpeg",
+          imageUrl: "https://images.pexels.com/photos/2566581/pexels-photo-2566581.jpeg",
           category: "Computers",
         },
         {
@@ -187,19 +189,22 @@ const recommendedProducts = [
           title: 'USB-C 32" 4K Display',
           price: 429.99,
           url: "https://example.com/products/usb-c-monitor",
-          src: "https://images.pexels.com/photos/14032439/pexels-photo-14032439.jpeg",
+          imageUrl: "https://images.unsplash.com/photo-1744955913865-853beac35448?q=80&w=2576&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Computers",
         },
       ],
     }
   ];
-  
-  
 
+const Success = ()=>{3
+  const {showModal} = useSelector(state => state.similarProducts)
+  const dispatch = useDispatch()
 
-const Success = ()=>{
     return (
         <div>
+          {
+              showModal ? <ModalOverlay callback={()=>dispatch(closeSimilarProductsModal())}/> : null
+          }
             <ImageBanner 
                 image={BannerImage}
                 projectName={"My project"}

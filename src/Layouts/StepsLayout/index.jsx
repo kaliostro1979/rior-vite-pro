@@ -61,16 +61,16 @@ export const StepsLayout = ({ children }) => {
   const foundError = Object.entries(STEPS)?.find(([_, value]) => value === currentStep)?.[0];
 
   return (
-    <div className="steps-layout">
+    <div className="steps-layout lg:pb-16 pb-10">
       
       <Toast message={errors[foundError]}/>
       <StepsNavigation />
 
-      <div className="steps-content mb-[40px] w-full max-w-[800px] m-auto">
+      <div className="steps-content mb-[40px] w-full max-w-[800px] m-auto lg:px-0 px-6">
         {children}
       </div>
 
-      <div className="flex justify-center items-center lg:gap-x-[30px] gap-x-4">
+      <div className="flex justify-center items-center lg:gap-x-[30px] gap-x-4 lg:px-0 px-6">
         <CustomButton
           button_type="secondary"
           size="large"

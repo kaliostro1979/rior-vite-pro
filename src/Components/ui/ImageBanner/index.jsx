@@ -4,10 +4,31 @@ import UploadIcon from "@/assets/icons/upload.svg"
 
 export const ImageBanner = ({image, projectName, place, parameters, url, classes}) => {
     return (
-        <div className={"relative w-full h-[177px] p-8 flex flex-col justify-end rounded-2xl overflow-hidden"}>
+        <div className={"relative w-full lg:h-[177px] h-[246px] p-8 flex flex-col justify-end lg:rounded-2xl overflow-hidden"}>
             <img src={image} alt="" className={classes}/>
-            <div className={"relative flex items-center justify-between text-primary-white z-[1]"}>
-                <div className={"flex items-center gap-x-[60px]"}>
+            <div className={"w-full lg:hidden block absolute top-0 left-1/2 -translate-x-1/2 pt-[30px]"}>
+                <div className={"w-full relative flex justify-center items-center"}>
+                    <div className={"text-primary-white"}>
+                        <p className={"text-primary-white opacity-60"}>{projectName}</p>
+                        <p>{place}</p>
+                    </div>
+                    <div className={"rounded-md gap-y-1.5 bg-gray-blurred-dark backdrop-blur-xs w-9 h-9 flex flex-col justify-center items-center absolute top-1/2 -translate-y-1/2 right-6"}>
+                        <Link to={"#"} className={"block w-5 h-5 upload-icon bg-primary-white"}
+                             style={{
+                                 WebkitMaskImage: `url("${UploadIcon}")`,
+                                 WebkitMaskSize: "cover",
+                                 WebkitMaskRepeat: "no-repeat",
+                                 maskImage: `url("${UploadIcon}")`,
+                                 maskSize: "cover",
+                                 maskRepeat: "no-repeat",
+                             }}
+                        >
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <div className={"relative flex items-center lg:justify-between justify-end text-primary-white z-[1]"}>
+                <div className={"lg:flex hidden items-center gap-x-[60px]"}>
                     <div className={"relative z-[1]"}>
                         <p className={"text-primary-white opacity-60"}>{projectName}</p>
                         <p>{place}</p>
@@ -15,7 +36,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                     <div className={"relative z-[1]"}>
                         <ul className={"flex items-center gap-x-2 text-primary-white"}>
                             <li className={"px-3 py-1.5 rounded-md gap-y-1.5 bg-gray-blurred-dark backdrop-blur-xs min-h-[52px] min-w-[86px] flex flex-col justify-center items-center"}>
-                                <div className={"w-5 h-5 upload-icon bg-primary-white"}
+                                <Link to={"#"} className={"block w-5 h-5 upload-icon bg-primary-white"}
                                      style={{
                                          WebkitMaskImage: `url("${UploadIcon}")`,
                                          WebkitMaskSize: "cover",
@@ -25,7 +46,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                                          maskRepeat: "no-repeat",
                                      }}
                                 >
-                                </div>
+                                </Link>
                             </li>
                             {
                                 parameters ? parameters.map((parameter)=>{

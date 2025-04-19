@@ -10,7 +10,7 @@ export const StepsNavigation = () => {
   );
 
   return (
-    <div className="wizard-steps__container mb-12">
+    <div className="wizard-steps__container mb-12 lg:px-0 px-6">
       <ul className="lg:flex lg:justify-between lg:items-baseline grid grid-cols-3 lg:gap-x-5 gap-x-2">
         {NAVIGATION_STEPS.map(item => {
           const isCompleted = stepsCompleted[item.number];

@@ -7,6 +7,7 @@ import {Header} from './Header';
 import {Loader} from './Loader';
 import {Toast} from './Toast';
 import { ImageBanner } from './ImageBanner';
+import {ModalOverlay} from './ModalOverlay';
 
 export {
     CustomUpload,
@@ -17,5 +18,6 @@ export {
     Header,
     Loader,
     Toast,
-    ImageBanner
+    ImageBanner,
+    ModalOverlay
 };

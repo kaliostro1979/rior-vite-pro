@@ -12,7 +12,7 @@ const Home = () => {
     );
 
     return (
-        <div>
+        <div className={"lg:px-0 px-6"}>
             <Toast message={errors["floorPlan"]}/>
             <CustomUpload/>
             <ProductsList/>

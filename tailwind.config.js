@@ -10,6 +10,7 @@ export default {
         "primary-white": "var(--primary-white)",
         "gray": "var(--gray)",
         "gray-medium": "var(--gray-medium)",
+        "gray-medium-light": "var(--gray-medium-light)",
         "gray-light": "var(--gray-light)",
         "gray-dark": "var(--gray-dark)",
         "gray-disabled": "var(--gray-disabled)",
@@ -30,4 +31,7 @@ export default {
     },
   },
   plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  }
 }

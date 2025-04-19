@@ -88,8 +88,7 @@ export const FileUploadInput = ({
   };
 
   return (
-    <div
-      className={`flex justify-center items-center lg:p-8 px-4 py-6 border border-dashed rounded-xl bg-gray-light ${
+    <div className={`flex justify-center items-center lg:p-8 px-4 py-6 border border-dashed rounded-xl bg-gray-light ${
         dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-label'
       }`}
       style={{ maxWidth: size === 'large' ? '100%' : '440px' }}

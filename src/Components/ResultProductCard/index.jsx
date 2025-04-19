@@ -1,35 +1,66 @@
-import { Link } from "react-router";
+import {Link} from "react-router";
 import ReplaceIcon from "@/assets/icons/replace.svg"
-import { setSelectedProductSimilarProducts } from "@/store/slices/similar-products/index.js";
-import { useDispatch, useSelector } from "react-redux";
-import { SimilarProducts } from "@/Components/SimilarProducts/index";
+import {
+    closeSimilarProductsModal,
+    openSimilarProductsModal,
+    setSelectedProductSimilarProducts
+} from "@/store/slices/similar-products/index.js";
+import {useDispatch, useSelector} from "react-redux";
+import {SimilarProducts} from "@/Components/SimilarProducts/index";
+import {useEffect, useState} from "react";
 
-export const ResultProductCard = ({ product }) => {
+export const ResultProductCard = (props) => {
     const dispatch = useDispatch()
-    const parentID = useSelector(state => state.similarProducts.parentID)
+    const {parentID} = useSelector(state => state.similarProducts)
+    const {product, hideReplace} = props
+
+    const [setSelectedProductSimilarProductsTimeOut, setSetSelectedProductSimilarProductsTimeOut] = useState(0)
+    const [openSelectedProductSimilarProductsTimeOut, setOpenSetSelectedProductSimilarProductsTimeOut] = useState(0)
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(setSelectedProductSimilarProductsTimeOut)
+            clearTimeout(openSelectedProductSimilarProductsTimeOut)
+        }
+    }, [setSelectedProductSimilarProductsTimeOut, openSelectedProductSimilarProductsTimeOut]);
+
+    const handleReplaceClick = () => {
+        dispatch(closeSimilarProductsModal())
+        setSetSelectedProductSimilarProductsTimeOut(
+            setTimeout(() => {
+                dispatch(setSelectedProductSimilarProducts(product))
+            }, 0)
+        )
+        setOpenSetSelectedProductSimilarProductsTimeOut(
+            setTimeout(() => {
+                dispatch(openSimilarProductsModal())
+            }, 1000)
+        )
+    }
 
     return (
-        <div className={"relative"}>
-            <div className={"group hover:bg-gray-medium p-3 rounded-xl cursor-pointer transition-all duration-300"}>
-                <div className={"relative aspect-[8/9] overflow-hidden rounded-xl"}>
-                    <img src={product.imageUrl} alt=""
-                        className={"absolute w-full h-full top-0 left-0 object-cover object-center group-hover:scale-105 transition-all duration-300"} />
+        <>
+            <div className={"relative flex lg:flex-col flex-row lg:items-start items-stretch lg:gap-0 gap-x-3 group lg:hover:bg-gray-medium lg:p-3 py-4 lg:rounded-xl rounded-none cursor-pointer transition-all duration-300 lg:border-0 border-b border-gray-border"}>
+                <div className={"relative lg:aspect-[8/9] aspect-[9/10] overflow-hidden rounded-xl lg:min-w-full min-w-[90px]"}>
+                    <img src={product.imageUrl} alt="" className={"absolute w-full h-full top-0 left-0 object-cover object-center group-hover:scale-105 transition-all duration-300"}/>
                 </div>
-                <div className={"flex flex-col gap-y-2 mt-2.5"}>
-                    <h3 className={"paragraph"}>{product.title}</h3>
-                    <div className={"flex justify-between items-center w-full"}>
-                        <Link to={product.url} className={"inline-block text-lg leading-none font-bold"}>{product.price}</Link>
-                        <button onClick={() => dispatch(setSelectedProductSimilarProducts(product))}
-                            className={"inline-flex flex-col justify-center items-center w-9 h-9 rounded-lg overflow-hidden border border-gray-border relative z-10"}>
-                            <img src={ReplaceIcon} alt="Replace" />
-                        </button>
+                <div className={"flex lg:flex-col flex-row lg:justify-start justify-between items-start lg:gap-y-2 lg:gap-x-0 gap-x-8 lg:mt-2.5 mt-0 w-full grow"}>
+                    <h3 className={"paragraph lg:max-w-[80%] max-w-full grow"}>{product.title}</h3>
+                    <div className={"lg:w-full w-fit"}>
+                        <Link to={product.url} className={"inline-block lg:text-lg text-base leading-none lg:font-bold font-medium"}>{product.price}</Link>
                     </div>
                 </div>
+                {
+                    !hideReplace ?
+                        <button onClick={handleReplaceClick} className={"inline-flex flex-col justify-center items-center w-9 h-9 rounded-lg overflow-hidden border border-gray-border z-10 absolute lg:right-2.5 lg:bottom-2.5 right-0 bottom-5"}>
+                            <img src={ReplaceIcon} alt="Replace"/>
+                        </button> : null
+                }
             </div>
             {
-                parentID === product.id ? <SimilarProducts /> : null
+                parentID === product.id ? <SimilarProducts/> : null
             }
-        </div>
+        </>
 
     )
 }

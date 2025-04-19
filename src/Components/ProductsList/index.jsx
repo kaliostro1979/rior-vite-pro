@@ -67,7 +67,7 @@ export const ProductsList = () => {
     return (
         <div className={"lg:mt-[52px] mt-8"}>
             <h1 className={"heading"}>Products</h1>
-            <div className={"grid lg:grid-cols-4 grid-cols-2 lg:gap-x-6 gap-x-3 lg:gap-y-7 gap-y-8 mt-7"}>
+            <div className={"grid lg:grid-cols-4 grid-cols-2 lg:gap-x-6 gap-x-3 lg:gap-y-7 gap-y-8 mt-7 lg:pb-10 pb-8"}>
                 {
                     productsArray && productsArray.map(product => {
                         return <ProductCard src={product.image} productTitle={product.title} productUrl={product.url} productPrice={product.price} key={product.id}/>

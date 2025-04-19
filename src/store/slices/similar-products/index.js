@@ -21,6 +21,9 @@ const similarProducts = createSlice({
             state.showModal = true
         },
         closeSimilarProductsModal: (state)=>{
+            state.showModal = false
+        },
+        clearSimilarProducts: (state)=>{
             state.similarProducts = []
         }
     }
@@ -29,7 +32,8 @@ const similarProducts = createSlice({
 export const {
     setSelectedProductSimilarProducts,
     openSimilarProductsModal,
-    closeSimilarProductsModal
+    closeSimilarProductsModal,
+    clearSimilarProducts
 } = similarProducts.actions;
 
 export default similarProducts.reducer

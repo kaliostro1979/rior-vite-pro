@@ -1,31 +1,18 @@
 import React from 'react';
+import Preloader from '@/assets/icons/loader.svg';
 
 export const Loader = ({
-  size = 'medium',
-  color = '#3b82f6',
   fullPage = false,
-  message = 'Loading...',
+  message = '',
   className,
 }) => {
-  const sizeClasses = {
-    small: 'w-6 h-6 border-[3px]',
-    medium: 'w-8 h-8 border-[4px]',
-    large: 'w-10 h-10 border-[5px]',
-  };
 
   return (
-    <div
-      className={`loader-container ${
-        fullPage
-          ? 'fixed inset-0 bg-black/30 flex items-center justify-center z-50'
-          : ''
-      } ${className}`}
-    >
-      <div
-        className={`loader ${sizeClasses[size]} border-t-transparent animate-spin rounded-full`}
-        style={{ borderColor: color }}
-      />
-      {message && <p className="mt-4 text-center text-gray-600">{message}</p>}
-    </div>
+      <div className={`loader-container ${ fullPage ? 'fixed inset-0 bg-black/30 flex flex-col items-center justify-center z-50' : ''} ${className}`}>
+        <div className={"lg:w-16 w-10 lg:h-16 h-10"}>
+          <img src={Preloader} alt="Preloader"/>
+        </div>
+        { message && <p className="mt-4 text-center text-gray-600">{message}</p>}
+      </div>
   );
 };
