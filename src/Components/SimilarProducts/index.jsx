@@ -1,3 +1,4 @@
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import CloseIcon from "@/assets/icons/close-black.svg"
 import ChevronLeft from "@/assets/icons/chevron-left.svg"
@@ -5,7 +6,7 @@ import {closeSimilarProductsModal} from "@/store/slices/similar-products/index.j
 import {ResultProductCard} from "@/Components/index.js";
 
 
-export const SimilarProducts = () => {
+const SimilarProducts = () => {
     const {similarProducts, showModal} = useSelector(state => state.similarProducts)
     const dispatch = useDispatch()
     const handleModalClose = ()=>{
@@ -26,14 +27,14 @@ export const SimilarProducts = () => {
                         lg:-translate-y-full translate-y-0
                         transition-all duration-300 ease-linear 
                         z-20 lg:bg-gray-medium-light bg-primary-white lg:rounded-[17px] lg:overflow-hidden 
-                        w-full lg:!p-5 !px-6
+                        w-full lg:!p-5 !px-6 min-h-[450px]
                     ${showModal ? 'lg:translate-y-0 translate-x-0': 'lg:!-translate-y-[calc(100%+20px)] translate-x-full'}`}>
                         <div className={"relative w-full lg:block hidden"}>
                             <div className={"relative flex items-center w-full justify-between"}>
                                 <h2>Replace product</h2>
                             </div>
                             <button className={"w-4 h-4 absolute top-1/2 right-0 -translate-y-1/2"} onClick={handleModalClose}>
-                                <img src={CloseIcon} alt="Close" className={"w-full h-full"}/>
+                                <img src={CloseIcon} alt="Close" className={"w-full h-full"} height={277} width={246} loading={"lazy"}/>
                             </button>
                         </div>
                         <div className={"lg:hidden flex items-center justify-center relative py-8 min-h-[36px]"}>
@@ -42,7 +43,7 @@ export const SimilarProducts = () => {
                             </button>
                             <p>Replace</p>
                         </div>
-                        <div className={"grid lg:grid-cols-5 grid-cols-1 items-stretch gap-x-3 w-full"}>
+                        <div className={"grid lg:grid-cols-5 grid-cols-1 items-stretch gap-x-3 w-full lg:max-h-[40dvh] max-h-[calc(100dvh-100px)] overflow-auto"}>
                             {
                                 similarProducts.map(product => {
                                     return (
@@ -57,3 +58,5 @@ export const SimilarProducts = () => {
         </>
     )
 }
+
+export default React.memo(SimilarProducts);

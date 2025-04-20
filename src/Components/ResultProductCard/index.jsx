@@ -6,7 +6,7 @@ import {
     setSelectedProductSimilarProducts
 } from "@/store/slices/similar-products/index.js";
 import {useDispatch, useSelector} from "react-redux";
-import {SimilarProducts} from "@/Components/SimilarProducts/index";
+import SimilarProducts from "@/Components/SimilarProducts/index";
 import {useEffect, useState} from "react";
 
 export const ResultProductCard = (props) => {
