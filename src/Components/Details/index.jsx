@@ -17,7 +17,7 @@ export const DetailsModal = (props) => {
     }, [modalIsOpen])
 
     return (
-        <div className={`fixed top-0 right-0 z-20 h-screen w-full bg-primary-white transition-all duration-500 ${ modalIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`fixed top-0 right-0 z-20 h-screen lg:max-w-[1000px] max-w-full bg-primary-white transition-all duration-500 ${ modalIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className={"relative flex flex-col lg:justify-center items-center w-full h-full overflow-auto"}>
                 <div className={"lg:hidden flex items-center justify-center pt-[30px] pb-2 px-6 w-full sticky top-0 bg-primary-white z-10"}>
                     <span className={"inline-block grow text-center"}>Details</span>

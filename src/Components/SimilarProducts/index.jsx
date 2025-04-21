@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import CloseIcon from "@/assets/icons/close-black.svg"
 import ChevronLeft from "@/assets/icons/chevron-left.svg"
 import {closeSimilarProductsModal} from "@/store/slices/similar-products/index.js";
 import {ResultProductCard} from "@/Components/index.js";
+import "@/styles/components/similar-porudcts.scss"
 
 
 const SimilarProducts = () => {
+    const [hasMounted, setHasMounted] = React.useState(false);
     const {similarProducts, showModal} = useSelector(state => state.similarProducts)
     const dispatch = useDispatch()
     const handleModalClose = ()=>{
@@ -15,20 +17,16 @@ const SimilarProducts = () => {
         }, 300)
     }
 
+    useEffect(() => {
+        const id = setTimeout(() => setHasMounted(true), 50);
+        return () => clearTimeout(id);
+    }, []);
+
     return (
         <>
             {
                 similarProducts.length
-                    ? <div className={`container 
-                        lg:h-auto h-screen
-                        fixed lg:top-5 lg:bottom-auto top-auto bottom-0 
-                        lg:left-1/2 lg:right-auto left-auto right-0 
-                        lg:-translate-x-1/2
-                        lg:-translate-y-full translate-y-0
-                        transition-all duration-300 ease-linear 
-                        z-20 lg:bg-gray-medium-light bg-primary-white lg:rounded-[17px] lg:overflow-hidden 
-                        w-full lg:!p-5 !px-6 min-h-[450px]
-                    ${showModal ? 'lg:translate-y-0 translate-x-0': 'lg:!-translate-y-[calc(100%+20px)] translate-x-full'}`}>
+                    ? <div className={`container similar-products__drawer ${showModal ? 'show': ''} ${hasMounted ? '' : 'transition-none'}`}>
                         <div className={"relative w-full lg:block hidden"}>
                             <div className={"relative flex items-center w-full justify-between"}>
                                 <h2>Replace product</h2>

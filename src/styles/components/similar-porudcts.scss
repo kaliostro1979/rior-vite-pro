@@ -1,0 +1,37 @@
+.similar-products__drawer {
+  position: fixed;
+  top: 20px;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, calc(-100% - 20px));
+  transition: 0.3s ease all;
+  will-change:  transform;
+  z-index: 20;
+  background-color: var(--gray-medium-light);
+  border-radius: 17px;
+  overflow: hidden;
+  padding: 20px;
+
+
+  @media (max-width: 990px) {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    height: 100dvh;
+    transform: translate(100%, 0);
+    background-color: var(--primary-white);
+    padding: 0 24px;
+  }
+
+  &.show {
+    transform: translate(-50%, 0);
+
+    @media (max-width: 990px) {
+      transform: translate(0, 0);
+    }
+  }
+}

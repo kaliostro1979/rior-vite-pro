@@ -18,8 +18,6 @@ function App() {
     }
   }, [showModal])
 
-  console.log(showModal)
-
   return (
     <AuthProvider>
       <BrowserRouter>
