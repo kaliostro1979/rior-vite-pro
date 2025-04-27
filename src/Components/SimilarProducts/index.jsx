@@ -26,7 +26,7 @@ const SimilarProducts = () => {
         <>
             {
                 similarProducts.length
-                    ? <div className={`container similar-products__drawer ${showModal ? 'show': ''} ${hasMounted ? '' : 'transition-none'}`}>
+                    ? <div className={`similar-products__drawer ${showModal ? 'show': ''} ${hasMounted ? '' : 'transition-none'}`}>
                         <div className={"relative w-full lg:block hidden"}>
                             <div className={"relative flex items-center w-full justify-between"}>
                                 <h2>Replace product</h2>
@@ -41,7 +41,7 @@ const SimilarProducts = () => {
                             </button>
                             <p>Replace</p>
                         </div>
-                        <div className={"grid lg:grid-cols-5 grid-cols-1 items-stretch gap-x-3 w-full lg:max-h-[40dvh] max-h-[calc(100dvh-100px)] overflow-auto"}>
+                        <div className={"grid lg:grid-cols-5 grid-cols-1 items-stretch gap-x-3 w-full"}>
                             {
                                 similarProducts.map(product => {
                                     return (
