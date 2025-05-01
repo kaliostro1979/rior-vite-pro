@@ -201,23 +201,25 @@ const parameters = [
 
 const Success = () => {
     const {showModal} = useSelector(state => state.similarProducts)
+    const {successData} = useSelector(state => state.stepWizard)
     const dispatch = useDispatch()
 
     const [detailsModalIsOpen, setDetailsModalIsOpen] = useState(false);
-
-
+    
     const handleDetailsModalOpen = () => {
         setDetailsModalIsOpen(true)
     }
 
     const location = useLocation()
-    const slug = location.pathname.split("/").slice(-1)[0]
+    const slugFromURL = location.pathname.split("/").slice(-1)[0]
+    const slug = slugFromURL !== "success" ? slugFromURL : localStorage.getItem("slug")
 
     useEffect(() => {
         if (slug && slug !== "success"){
             dispatch(fetchUserData(slug))
         }
-    }, [dispatch, slug]);
+    }, [dispatch, slug]);    
+console.log(successData);
 
     return (
         <div>
@@ -225,13 +227,15 @@ const Success = () => {
                 showModal ? <ModalOverlay callback={() => dispatch(closeSimilarProductsModal())}/> : null
             }
             <ImageBanner
+                image={import.meta.env.VITE_BASE_URL + successData?.data.design_image_url}
+                url={successData?.data.unique_link}
                 projectName={"My project"}
                 parameters={parameters}
                 place={"Bathroom"}
                 classes={"absolute top-0 left-0 w-full h-full object-center object-cover"}
                 callBack={handleDetailsModalOpen}
             />
-            {/*<ResultProducts list={successData["data"]["products"]}/>*/}
+            <ResultProducts list={successData?.data.products}/>
           {
               detailsModalIsOpen ? <ModalOverlay callback={()=> setDetailsModalIsOpen(false)}/> : null
           }

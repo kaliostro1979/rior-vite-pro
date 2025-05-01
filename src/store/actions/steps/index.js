@@ -167,7 +167,12 @@ export const submitWizardData = createAsyncThunk(
             });
 
            /* await new Promise(resolve => setTimeout(resolve, 1000));*/
-            const response = await api.post("/design-requests/", formData);
+            const response = await api.post("/api/design-requests/", formData);
+            
+            if(response){
+                localStorage.setItem("slug", response.data?.slug)
+            }
+            
             dispatch(setSubmitted(true));
             dispatch(setSuccessData(response));
             return {success: true};
@@ -186,9 +191,8 @@ export const fetchUserData = createAsyncThunk(
             dispatch(setSubmitting(true));
 
             const state = getState().stepWizard;
-            console.log("state.data.slug");
             /* await new Promise(resolve => setTimeout(resolve, 1000));*/
-            const response = await api.get(`/design-requests/${slug}`);
+            const response = await api.get(`/api/design-requests/${slug}`);
 
             dispatch(setSubmitted(true));
             dispatch(setSuccessData(response));

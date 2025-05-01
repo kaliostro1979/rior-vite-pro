@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import { STEPS } from '@/constants/routes';
 import { FloorPlanUploader, DesignUploader, DetailsForm } from '@/Components';
 import { cleanupObjectUrls } from '@/store/actions/steps';
+import { resetWizard } from '@/store/slices/steps';
 
 const Step = () => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const Step = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
 
   const isSubmitted = useSelector(state => state.stepWizard.isSubmitted);
 
@@ -20,6 +22,7 @@ const Step = () => {
       navigate('/success');
     }
   }, [isSubmitted, navigate]);
+
 
   const renderStepContent = () => {
     switch (currentStep) {

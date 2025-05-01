@@ -4,6 +4,16 @@ import UploadIcon from "@/assets/icons/upload.svg"
 
 export const ImageBanner = ({image, projectName, place, parameters, url, classes, callBack}) => {
 
+    const copyURL = (event)=>{
+        event.preventDefault()
+        const url = event.currentTarget.href        
+        navigator.clipboard.writeText(url)
+        .then()
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
     return (
         <div
             className={"relative w-full lg:h-[177px] h-[246px] p-8 flex flex-col justify-end lg:rounded-2xl overflow-hidden"}>
@@ -84,7 +94,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                              maskSize: "cover",
                              maskRepeat: "no-repeat",
                          }}></div>
-                    <Link to={url} className={"paragraph-small"}>Copy URL</Link>
+                    <Link to={url} className={"paragraph-small"} onClick={(event)=>copyURL(event)}>Copy URL</Link>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ import { submitWizardData } from '@/store/actions/steps';
 export const StepsLayout = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const { id } = useParams();
   const currentStep = parseInt(id, 10) || STEPS.floorPlan;
 
