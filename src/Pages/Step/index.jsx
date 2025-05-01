@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-
 import { STEPS } from '@/constants/routes';
 import { FloorPlanUploader, DesignUploader, DetailsForm } from '@/Components';
-import { cleanupObjectUrls } from '@/store/actions/steps';
-import { resetWizard } from '@/store/slices/steps';
 
 const Step = () => {
   const { id } = useParams();
   const currentStep = parseInt(id, 10) || STEPS.floorPlan;
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   
 

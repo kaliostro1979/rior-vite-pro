@@ -1,20 +1,31 @@
 import {Link} from "react-router"
 import LinkIcon from "@/assets/icons/link.svg"
 import UploadIcon from "@/assets/icons/upload.svg"
+import { useEffect, useState } from "react"
+import {Toast} from '@/Components/ui';
 
 export const ImageBanner = ({image, projectName, place, parameters, url, classes, callBack}) => {
-
+    const [isCopiend, setIsCopiend] = useState(false)
+    
     const copyURL = (event)=>{
         event.preventDefault()
         const url = event.currentTarget.href        
-        navigator.clipboard.writeText(url)
-        .then()
+        navigator.clipboard.writeText(url)  
+        .then(()=> { setIsCopiend(true) })
         .catch(err => {
+            setIsCopiend(false)
             console.error('Failed to copy: ', err);
         });
     }
 
     return (
+        <>
+        {
+            isCopiend ? <Toast
+            isSuccess = {true}
+            message = {{message: "Link copied to clipboard!"}} 
+            customClasses={"relative max-w-[354px] py-[14px] pl-[14px] pr-10 rounded-lg border border-green-400 bg-primary-white"}/> : null
+        }
         <div
             className={"relative w-full lg:h-[177px] h-[246px] p-8 flex flex-col justify-end lg:rounded-2xl overflow-hidden"}>
             <img src={image} alt="" className={classes}/>
@@ -98,6 +109,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
