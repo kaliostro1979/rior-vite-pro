@@ -12,6 +12,7 @@ export const FileUploadInput = ({
   labelText,
   size = 'large',
   icon,
+  name,
   onFileSelected, // Changed from action to callback function
   acceptTypes = FILE_TYPE,
   maxSize = MAX_SIZE, // 10MB default max size

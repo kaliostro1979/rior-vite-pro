@@ -6,7 +6,7 @@ import {
     setDesignUrl,
     setErrors,
     setSubmitting,
-    setSubmitted,
+    setSubmitted, setSuccessData,
 } from '@/store/slices/steps';
 
 import {
@@ -14,14 +14,14 @@ import {
     ACTION_NAME_UPLOAD_DESIGN,
     ACTION_NAME_CLEAN_OBJECT_URLS,
     ACTION_NAME_SUBMIT_WIZARD_DATA,
-    VALID_TYPES,
+    VALID_TYPES, ACTION_NAME_FETCH_USER_DATA,
 } from './constants';
 import { MAX_FILE_SIZE } from '@/constants/file';
+import api from "@/services/api/axiosInstence.js";
 
 export const uploadFloorPlan = createAsyncThunk(
     ACTION_NAME_UPLOAD_FLOOR_PLAN,
     async (file, {dispatch, rejectWithValue}) => {
-
         try {
             if (!file) {
                 return rejectWithValue('No file selected');
@@ -32,7 +32,7 @@ export const uploadFloorPlan = createAsyncThunk(
                     setErrors({
                         floorPlan: {
                             heading: "Invalid file type",
-                            message: "Invalid file type. Please upload a PDF or PNG file."
+                            message: "Invalid file type. Please upload a image file."
                         },
                     })
                 );
@@ -86,7 +86,7 @@ export const uploadDesign = createAsyncThunk(
                     setErrors({
                         design: {
                             heading: "Invalid file type",
-                            message: "Invalid file type. Please upload a PDF or PNG file."
+                            message: "Invalid file type. Please upload a image file."
                         }
                     })
                 );
@@ -159,17 +159,39 @@ export const submitWizardData = createAsyncThunk(
             }
 
             const formData = new FormData();
-
-            formData.append('floorPlan', state.floorPlan);
-            formData.append('design', state.design);
+            formData.append('floor_plan', state.floorPlan);
+            formData.append('interior_photo', state.design);
 
             Object.keys(state.details).forEach(key => {
-                formData.append(`details[${key}]`, state.details[key]);
+                formData.append(key, state.details[key]);
             });
 
-            await new Promise(resolve => setTimeout(resolve, 1000));
+           /* await new Promise(resolve => setTimeout(resolve, 1000));*/
+            const response = await api.post("/design-requests/", formData);
+            dispatch(setSubmitted(true));
+            dispatch(setSuccessData(response));
+            return {success: true};
+        } catch (error) {
+            return rejectWithValue(error.message || 'Failed to submit data');
+        } finally {
+            dispatch(setSubmitting(false));
+        }
+    }
+);
+
+export const fetchUserData = createAsyncThunk(
+    ACTION_NAME_FETCH_USER_DATA,
+    async (slug, {dispatch, getState, rejectWithValue}) => {
+        try {
+            dispatch(setSubmitting(true));
+
+            const state = getState().stepWizard;
+            console.log("state.data.slug");
+            /* await new Promise(resolve => setTimeout(resolve, 1000));*/
+            const response = await api.get(`/design-requests/${slug}`);
 
             dispatch(setSubmitted(true));
+            dispatch(setSuccessData(response));
             return {success: true};
         } catch (error) {
             return rejectWithValue(error.message || 'Failed to submit data');

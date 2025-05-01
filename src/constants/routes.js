@@ -3,6 +3,7 @@ export const ROUTES = {
   steps: '/steps',
   step: '/steps/step/:id',
   success: '/success',
+  userPage: '/api/design-requests/:slug/',
   globalComponents: '/global-components'
 };
 

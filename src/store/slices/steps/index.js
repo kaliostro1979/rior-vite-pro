@@ -11,10 +11,9 @@ const initialState = {
     designUrl: null,
 
     details: {
-        name: '',
-        sqm: '',
-        ceilingHeight: '',
-        doorWidth: '',
+        project_name: '',
+        ceiling_height: '',
+        door_height: '',
     },
 
     // Wizard state
@@ -33,6 +32,7 @@ const initialState = {
 
     isSubmitting: false,
     isSubmitted: false,
+    successData: null,
 };
 
 const wizardSlice = createSlice({
@@ -41,22 +41,14 @@ const wizardSlice = createSlice({
     reducers: {
         setFloorPlan: (state, action) => {
             state.floorPlan = action.payload;
-            if (action.payload) {
-                state.stepsCompleted[1] = true;
-            } else {
-                state.stepsCompleted[1] = false;
-            }
+            state.stepsCompleted[1] = !!action.payload;
         },
         setFloorPlanUrl: (state, action) => {
             state.floorPlanUrl = action.payload;
         },
         setDesign: (state, action) => {
             state.design = action.payload;
-            if (action.payload) {
-                state.stepsCompleted[2] = true;
-            } else {
-                state.stepsCompleted[2] = false;
-            }
+            state.stepsCompleted[2] = !!action.payload;
         },
         setDesignUrl: (state, action) => {
             state.designUrl = action.payload;
@@ -95,6 +87,9 @@ const wizardSlice = createSlice({
         setSubmitted: (state, action) => {
             state.isSubmitted = action.payload;
         },
+        setSuccessData(state, action){
+            state.successData = action.payload
+        },
         resetWizard: () => initialState,
     },
 });
@@ -112,6 +107,7 @@ export const {
     setSubmitting,
     setSubmitted,
     resetWizard,
+    setSuccessData
 } = wizardSlice.actions;
 
 export default wizardSlice.reducer;

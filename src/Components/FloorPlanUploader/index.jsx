@@ -45,7 +45,7 @@ export const FloorPlanUploader = () => {
                                 <img src={Images} alt=""/>
                             </div>
                             <p className="text-base leading-[22px] text-primary-black">Click to browse or drag and drop</p>
-                            <p className="text-sm leading-[17px] text-gray">PDF or PNG (Max 2MB)</p>
+                            <p className="text-sm leading-[17px] text-gray">Image (Max 2MB)</p>
                         </div>
                         <CustomButton button_type={"primary"} type={"button"} text={"Upload"} size={"small"}/>
                     </div>
@@ -58,8 +58,9 @@ export const FloorPlanUploader = () => {
                 ref={fileInputRef}
                 type="file"
                 className="hidden"
-                accept=".pdf,.png"
+                accept=".jpg,.png,.jpeg,.webp"
                 onChange={handleFileChange}
+                name={"interior_photo"}
             />
         </div>
     );

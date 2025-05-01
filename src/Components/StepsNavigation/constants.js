@@ -4,7 +4,7 @@ export const NAVIGATION_STEPS = [
   {
     number: STEPS.floorPlan,
     label: 'Upload floor plan',
-    description: 'Browse PDF or PNG file of your floor plan',
+    description: 'Browse image file of your floor plan',
   },
   {
     number: STEPS.design,

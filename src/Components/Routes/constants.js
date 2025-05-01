@@ -28,5 +28,10 @@ export const APP_ROUTES = [
     path: ROUTES.success,
     layout: null,
     component: lazy(()=>import('@/Pages/Success'))
+  },
+  {
+    path: ROUTES.userPage,
+    layout: null,
+    component: lazy(()=>import('@/Pages/Success'))
   }
 ];

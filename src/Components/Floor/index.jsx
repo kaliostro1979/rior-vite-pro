@@ -6,10 +6,10 @@ import { setFloorPlan, setFloorPlanUrl, setDesign, setDesignUrl } from '@/store/
 export const Floor = props => {
   const { preview, fileType, type = 'floorPlan' } = props;
   const dispatch = useDispatch();
-  const [pdfDataUrl, setPdfDataUrl] = useState(null);
-  const [error, setError] = useState(null);
+ /* const [pdfDataUrl, setPdfDataUrl] = useState(null);
+  const [error, setError] = useState(null);*/
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (fileType === 'pdf' && preview) {
       fetch(preview)
           .then(response => response.blob())
@@ -29,7 +29,7 @@ export const Floor = props => {
             setError('Error loading PDF');
           });
     }
-  }, [preview, fileType]);
+  }, [preview, fileType]);*/
 
   const handleRemove = () => {
     if (type === 'floorPlan') {
@@ -54,28 +54,7 @@ export const Floor = props => {
           </button>
 
           {
-            fileType === "pdf" ? (
-                error ? (
-                    <div className="flex items-center justify-center h-full text-red-500">{error}</div>
-                ) : !pdfDataUrl ? (
-                    <div className="flex items-center justify-center h-full">Loading PDF...</div>
-                ) : (
-                    <object
-                        data={pdfDataUrl}
-                        type="application/pdf"
-                        className="w-full h-full"
-                        style={{ border: 'none' }}
-                    >
-                      <a
-                          href={pdfDataUrl}
-                          download="document.pdf"
-                          className="flex items-center justify-center h-full text-blue-600 underline"
-                      >
-                        Download PDF
-                      </a>
-                    </object>
-                )
-            ) : (
+            (
                 <img
                     src={preview}
                     alt=""

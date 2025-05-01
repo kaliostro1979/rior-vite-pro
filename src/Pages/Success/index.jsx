@@ -1,9 +1,10 @@
 import {ImageBanner, ModalOverlay} from "@/Components/ui"
-import BannerImage from "@/assets/images/image-banner.png"
 import {DetailsModal, ResultProducts} from "@/Components/index.js";
 import {useDispatch, useSelector} from "react-redux";
 import {closeSimilarProductsModal} from "@/store/slices/similar-products/index.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {fetchUserData} from "@/store/actions/steps/index.js";
+import {useLocation} from "react-router";
 
 
 const parameters = [
@@ -24,7 +25,7 @@ const parameters = [
     }
 ]
 
-const recommendedProducts = [
+/*const recommendedProducts = [
     {
         id: "001",
         title: "Wireless Noise-Canceling Headphones",
@@ -195,10 +196,10 @@ const recommendedProducts = [
             },
         ],
     }
-];
+];*/
+
 
 const Success = () => {
-    3
     const {showModal} = useSelector(state => state.similarProducts)
     const dispatch = useDispatch()
 
@@ -209,20 +210,28 @@ const Success = () => {
         setDetailsModalIsOpen(true)
     }
 
+    const location = useLocation()
+    const slug = location.pathname.split("/").slice(-1)[0]
+
+    useEffect(() => {
+        if (slug && slug !== "success"){
+            dispatch(fetchUserData(slug))
+        }
+    }, [dispatch, slug]);
+
     return (
         <div>
             {
                 showModal ? <ModalOverlay callback={() => dispatch(closeSimilarProductsModal())}/> : null
             }
             <ImageBanner
-                image={BannerImage}
                 projectName={"My project"}
                 parameters={parameters}
                 place={"Bathroom"}
                 classes={"absolute top-0 left-0 w-full h-full object-center object-cover"}
                 callBack={handleDetailsModalOpen}
             />
-            <ResultProducts list={recommendedProducts}/>
+            {/*<ResultProducts list={successData["data"]["products"]}/>*/}
           {
               detailsModalIsOpen ? <ModalOverlay callback={()=> setDetailsModalIsOpen(false)}/> : null
           }

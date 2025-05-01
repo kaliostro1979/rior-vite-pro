@@ -20,17 +20,16 @@ export const CustomUpload = () => {
 
   return (
     <FileUploadInput
-      heading={
-        "Upload a plan or explore inspirations—click 'Upload' or drag and drop."
-      }
+      heading={"Upload a plan or explore inspirations—click 'Upload' or drag and drop."}
       labelText={'Upload'}
-      subheading={'PDF or PNG'}
+      subheading={'Image'}
       size={'large'}
       icon={
         <img src={UploadIcon} className={'w-full h-full'} alt="Upload icon" />
       }
       id={'step-floor'}
       onFileSelected={handleFileUpload}
+      name={"interior_photo"}
     />
   );
 };
