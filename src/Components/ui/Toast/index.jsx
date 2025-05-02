@@ -3,6 +3,8 @@ import {ToastContainer, toast, Bounce} from 'react-toastify';
 import CloseIcon from "@/assets/icons/close-black.svg"
 import ErrorIcon from "@/assets/icons/close-red.svg"
 import SuccessIcon from "@/assets/icons/success.svg"
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsCopyURL } from "@/store/slices/steps";
 
 const ToastCloseButton = () => {
     return (
@@ -32,7 +34,25 @@ const ToastInner = (props) => {
 }
 
 export const Toast = (props) => {
-    const {message = '', customClasses, isSuccess = false} = props
+    const { message = '', customClasses, isSuccess = false } = props
+    const dispatch = useDispatch()
+    const { isCopied } = useSelector(state => state.stepWizard)
+
+    const unsubscribe = toast.onChange((payload) => {
+        switch (payload.status) {
+            case "added":
+                break;
+            case "updated":
+                break;
+            case "removed":
+                dispatch(setIsCopyURL(false))
+                break;
+        }
+    });
+
+    useEffect(() => {
+        unsubscribe();
+    }, [isCopied, unsubscribe])
 
     useEffect(() => {
         if (message && Object.entries(message)?.length) {

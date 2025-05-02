@@ -33,6 +33,7 @@ const initialState = {
     isSubmitting: false,
     isSubmitted: false,
     successData: null,
+    isCopied: false
 };
 
 const wizardSlice = createSlice({
@@ -91,6 +92,9 @@ const wizardSlice = createSlice({
             state.successData = action.payload
         },
         resetWizard: () => initialState,
+        setIsCopyURL: (state, action)=>{
+            state.isCopied = action.payload
+        }
     },
 });
 
@@ -107,7 +111,8 @@ export const {
     setSubmitting,
     setSubmitted,
     resetWizard,
-    setSuccessData
+    setSuccessData,
+    setIsCopyURL
 } = wizardSlice.actions;
 
 export default wizardSlice.reducer;

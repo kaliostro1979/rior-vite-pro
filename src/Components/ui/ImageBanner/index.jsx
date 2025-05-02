@@ -1,20 +1,22 @@
 import {Link} from "react-router"
 import LinkIcon from "@/assets/icons/link.svg"
 import UploadIcon from "@/assets/icons/upload.svg"
-import { useState } from "react"
 import {Toast} from '@/Components/ui';
+import { useDispatch, useSelector } from "react-redux";
+import { setIsCopyURL } from "@/store/slices/steps";
 
 export const ImageBanner = ({image, projectName, place, parameters, url, classes, callBack}) => {
-    const [isCopied, setIsCopied] = useState(false)
-    
+    const dispatch = useDispatch()
+    const {isCopied} = useSelector(state => state.stepWizard)
+
     const copyURL = (event)=>{
         event.preventDefault()
         event.stopPropagation()
         const url = event.currentTarget.href        
         navigator.clipboard.writeText(url)  
-        .then(()=> { setIsCopied(true) })
+        .then(()=> { dispatch(setIsCopyURL(true)) })
         .catch(err => {
-            setIsCopied(false)
+            dispatch(setIsCopyURL(true))
             console.error('Failed to copy: ', err);
         });
     }
