@@ -11,7 +11,7 @@ import {useEffect, useState} from "react";
 
 export const ResultProductCard = (props) => {
     const dispatch = useDispatch()
-    const {parentID} = useSelector(state => state.similarProducts)
+    const {parentID, similarProducts} = useSelector(state => state.similarProducts)
     const {product, hideReplace} = props
 
     const [setSelectedProductSimilarProductsTimeOut, setSetSelectedProductSimilarProductsTimeOut] = useState(0)
@@ -51,7 +51,7 @@ export const ResultProductCard = (props) => {
                     </div>
                 </div>
                 {
-                    !hideReplace ?
+                    !hideReplace && similarProducts?.length ?
                         <button className={"inline-flex flex-col justify-center items-center w-9 h-9 rounded-lg overflow-hidden border border-gray-border absolute lg:right-2.5 lg:bottom-2.5 right-0 bottom-5"}>
                             <img src={ReplaceIcon} alt="Replace"/>
                         </button> : null

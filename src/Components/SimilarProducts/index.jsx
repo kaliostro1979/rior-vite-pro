@@ -25,7 +25,7 @@ const SimilarProducts = () => {
     return (
         <>
             {
-                similarProducts.length
+                similarProducts?.length
                     ? <div className={`similar-products__drawer ${showModal ? 'show': ''} ${hasMounted ? '' : 'transition-none'}`}>
                         <div className={"relative w-full lg:block hidden"}>
                             <div className={"relative flex items-center w-full justify-between"}>

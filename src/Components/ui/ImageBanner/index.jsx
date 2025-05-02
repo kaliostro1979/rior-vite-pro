@@ -1,19 +1,20 @@
 import {Link} from "react-router"
 import LinkIcon from "@/assets/icons/link.svg"
 import UploadIcon from "@/assets/icons/upload.svg"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {Toast} from '@/Components/ui';
 
 export const ImageBanner = ({image, projectName, place, parameters, url, classes, callBack}) => {
-    const [isCopiend, setIsCopiend] = useState(false)
+    const [isCopied, setIsCopied] = useState(false)
     
     const copyURL = (event)=>{
         event.preventDefault()
+        event.stopPropagation()
         const url = event.currentTarget.href        
         navigator.clipboard.writeText(url)  
-        .then(()=> { setIsCopiend(true) })
+        .then(()=> { setIsCopied(true) })
         .catch(err => {
-            setIsCopiend(false)
+            setIsCopied(false)
             console.error('Failed to copy: ', err);
         });
     }
@@ -21,7 +22,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
     return (
         <>
         {
-            isCopiend ? <Toast
+            isCopied ? <Toast
             isSuccess = {true}
             message = {{message: "Link copied to clipboard!"}} 
             customClasses={"relative max-w-[354px] py-[14px] pl-[14px] pr-10 rounded-lg border border-green-400 bg-primary-white"}/> : null

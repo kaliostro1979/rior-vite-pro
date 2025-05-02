@@ -39,7 +39,7 @@ export const Toast = (props) => {
     
             toast(<ToastInner message={message} isSuccess ={isSuccess}/>, {
                 position: "top-right",
-                autoClose: 20000,
+                autoClose: 2000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -57,7 +57,7 @@ export const Toast = (props) => {
     return (
         <ToastContainer
             position="top-right"
-            autoClose={20000}
+            autoClose={2000}
             hideProgressBar={true}
             newestOnTop={false}
             closeOnClick={true}

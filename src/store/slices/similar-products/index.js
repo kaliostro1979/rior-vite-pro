@@ -18,7 +18,7 @@ const similarProducts = createSlice({
             }
         },
         openSimilarProductsModal: (state)=>{
-            state.showModal = true
+            state.showModal = !!state.similarProducts?.length;
         },
         closeSimilarProductsModal: (state)=>{
             state.showModal = false
