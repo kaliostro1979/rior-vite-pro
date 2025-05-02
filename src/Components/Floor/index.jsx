@@ -2,6 +2,7 @@ import Trash from '@/assets/icons/trash.svg';
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { setFloorPlan, setFloorPlanUrl, setDesign, setDesignUrl } from '@/store/slices/steps';
+import {CustomImage} from "@/Components/ui/index.js";
 
 export const Floor = props => {
   const { preview, fileType, type = 'floorPlan' } = props;
@@ -49,17 +50,13 @@ export const Floor = props => {
               className={"w-10 h-10 flex flex-col justify-center items-center absolute bottom-4 right-4 rounded-lg border border-gray-border bg-gray-blurred cursor-pointer z-10"}
           >
             <div className={"w-5 h-5"}>
-              <img src={Trash} className={'w-full h-full'} alt="Remove file" />
+              <CustomImage src={Trash} alt={"Remove file"} classes={"w-full h-full"}/>
             </div>
           </button>
 
           {
             (
-                <img
-                    src={preview}
-                    alt=""
-                    className={'absolute top-0 left-0 w-full h-full object-contain object-center'}
-                />
+                <CustomImage src={preview} alt={"Floor preview"} classes={"absolute top-0 left-0 w-full h-full object-contain object-center"}/>
             )
           }
         </div>

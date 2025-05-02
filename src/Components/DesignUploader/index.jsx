@@ -5,7 +5,7 @@ import {uploadDesign} from '@/store/actions/steps';
 import {Floor} from '@/Components';
 
 import Images from "@/assets/icons/pictures.svg"
-import {CustomButton} from "@/Components/ui/index.js";
+import {CustomButton, CustomImage} from "@/Components/ui/index.js";
 
 export const DesignUploader = () => {
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export const DesignUploader = () => {
                    >
                        <div className={"flex flex-col justify-center items-center gap-y-3 mb-[22px]"}>
                            <div className={"w-[30px] h-[30px]"}>
-                               <img src={Images} alt=""/>
+                               <CustomImage src={Images} alt={"Design image"}/>
                            </div>
                            <p className="text-base leading-[22px] text-primary-black">Click to browse or drag and drop</p>
                            <p className="text-sm leading-[17px] text-gray">Image (Max 2MB)</p>
