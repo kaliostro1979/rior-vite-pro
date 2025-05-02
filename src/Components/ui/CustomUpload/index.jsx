@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { uploadFloorPlan } from '@/store/actions/steps';
 import UploadIcon from '@/assets/icons/upload.svg';
-import { FileUploadInput } from '@/Components/ui';
+import {CustomImage, FileUploadInput} from '@/Components/ui';
 
 export const CustomUpload = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export const CustomUpload = () => {
       subheading={'Image'}
       size={'large'}
       icon={
-        <img src={UploadIcon} className={'w-full h-full'} alt="Upload icon" />
+        <CustomImage src={UploadIcon} alt={"Upload icon"} classes={"w-full h-full"}/>
       }
       id={'step-floor'}
       onFileSelected={handleFileUpload}

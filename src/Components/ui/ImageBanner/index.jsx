@@ -1,7 +1,7 @@
 import {Link} from "react-router"
 import LinkIcon from "@/assets/icons/link.svg"
 import UploadIcon from "@/assets/icons/upload.svg"
-import {Toast} from '@/Components/ui';
+import {CustomImage, Toast} from '@/Components/ui';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsCopyURL } from "@/store/slices/steps";
 
@@ -31,7 +31,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
         }
         <div
             className={"relative w-full lg:h-[177px] h-[246px] p-8 flex flex-col justify-end lg:rounded-2xl overflow-hidden"}>
-            <img src={image} alt="" className={classes}/>
+            <CustomImage src={image} alt={"Project name"} classes={classes}/>
             <div className={"w-full lg:hidden block absolute top-0 left-1/2 -translate-x-1/2 pt-[30px]"}>
                 <div className={"w-full relative flex justify-center items-center"}>
                     <div className={"text-primary-white"}>

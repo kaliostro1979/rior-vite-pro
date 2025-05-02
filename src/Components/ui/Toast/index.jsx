@@ -5,11 +5,12 @@ import ErrorIcon from "@/assets/icons/close-red.svg"
 import SuccessIcon from "@/assets/icons/success.svg"
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsCopyURL } from "@/store/slices/steps";
+import {CustomImage} from "@/Components/ui/index.js";
 
 const ToastCloseButton = () => {
     return (
         <div className={"absolute w-3 h-3 top-[14px] right-[14px] z-[1]"}>
-            <img src={CloseIcon} alt="" className={"w-full h-full"}/>
+            <CustomImage src={CloseIcon} alt={"Close Icon"} classes={"w-full h-full"}/>
         </div>
     )
 }
@@ -19,10 +20,9 @@ const ToastInner = (props) => {
 
     return (
         <div>
-           {/* <ToastCloseButton/>*/}
             <div className={"flex items-start gap-x-[14px]"}>
                 <div className={"w-6 h-6 min-w-6 min-h-6"}>
-                    <img src={!isSuccess ? ErrorIcon : SuccessIcon} alt="" className={"w-full h-full"}/>
+                    <CustomImage src={!isSuccess ? ErrorIcon : SuccessIcon} alt={"Status icon"} classes={"w-full h-full"}/>
                 </div>
                 <div className={"flex flex-col items-start gap-y-1.5"}>
                     <strong className={"paragraph-small text-primary-black"}>{message.heading}</strong>
