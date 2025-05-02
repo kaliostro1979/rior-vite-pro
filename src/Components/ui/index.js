@@ -9,6 +9,7 @@ import {Toast} from './Toast';
 import { ImageBanner } from './ImageBanner';
 import {ModalOverlay} from './ModalOverlay';
 import {CustomImage} from "./ Image";
+import {ParameterItem} from "./ParameterItem";
 
 export {
     CustomUpload,
@@ -21,5 +22,6 @@ export {
     Toast,
     ImageBanner,
     ModalOverlay,
-    CustomImage
+    CustomImage,
+    ParameterItem
 };

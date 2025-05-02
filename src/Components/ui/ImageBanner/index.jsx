@@ -1,7 +1,7 @@
 import {Link} from "react-router"
 import LinkIcon from "@/assets/icons/link.svg"
 import UploadIcon from "@/assets/icons/upload.svg"
-import {CustomImage, Toast} from '@/Components/ui';
+import {CustomImage, ParameterItem, Toast} from '@/Components/ui';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsCopyURL } from "@/store/slices/steps";
 
@@ -84,15 +84,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                                 </button>
                             </li>
                             {
-                                parameters ? parameters.map((parameter) => {
-                                    return (
-                                        <li key={parameter.id}
-                                            className={"px-3 py-1.5 rounded-md flex flex-col items-start gap-y-1.5 bg-gray-blurred-dark backdrop-blur-xs min-h-[52px] min-w-[86px]"}>
-                                            <p className={"text-[11px] leading-none"}>{parameter.title}</p>
-                                            <p className={"paragraph"}>{parameter.value}</p>
-                                        </li>
-                                    )
-                                }) : null
+                                parameters ? parameters.map((parameter) => <ParameterItem parameter={parameter}/>) : null
                             }
                         </ul>
                     </div>
