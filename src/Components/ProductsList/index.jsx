@@ -21,7 +21,7 @@ export const ProductsList = () => {
             <div className={"grid lg:grid-cols-4 grid-cols-2 lg:gap-x-6 gap-x-3 lg:gap-y-7 gap-y-8 mt-7 lg:pb-10 pb-8"}>
                 {
                     products && products.map(product => {
-                        return <ProductCard src={product.image} productTitle={product.name} productUrl={product.url}
+                        return <ProductCard src={import.meta.env.VITE_BASE_URL + product.product_image} productTitle={product.name} productUrl={product.url}
                                             productPrice={product.price} key={product.id}/>
                     })
                 }

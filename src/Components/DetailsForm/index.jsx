@@ -11,7 +11,7 @@ export const DetailsForm = () => {
   const details = useSelector(state => state.stepWizard.details);
 
   const [formData, setFormData] = useState({
-    project_name: details.project_name || '',
+    name: details.name || '',
     ceiling_height: details.ceiling_height || 2.7,
     door_height: details.door_height || 0.9,
   });
@@ -53,12 +53,12 @@ export const DetailsForm = () => {
         <CustomInput
           id="project-name"
           type="text"
-          name="project_name"
+          name="name"
           placeholder="MyDream Home"
           label="Project Name"
-          value={formData.project_name}
+          value={formData.name}
           onChange={handleChange}
-          errorMessage={errors.project_name}
+          errorMessage={errors.name}
         />
         <CustomInput
           id="ceiling-height"

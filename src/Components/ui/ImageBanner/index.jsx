@@ -5,9 +5,9 @@ import {CustomImage, ParameterItem, Toast} from '@/Components/ui';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsCopyURL } from "@/store/slices/steps";
 
-export const ImageBanner = ({image, projectName, place, parameters, url, classes, callBack}) => {
+export const ImageBanner = ({image, place, parameters, url, classes, callBack, projectName}) => {
     const dispatch = useDispatch()
-    const {isCopied} = useSelector(state => state.stepWizard)
+    const {isCopied} = useSelector(state => state.stepWizard)    
 
     const copyURL = (event)=>{
         event.preventDefault()
@@ -19,7 +19,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
             dispatch(setIsCopyURL(true))
             console.error('Failed to copy: ', err);
         });
-    }
+    }    
 
     return (
         <>
@@ -31,11 +31,13 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
         }
         <div
             className={"relative w-full lg:h-[177px] h-[246px] p-8 flex flex-col justify-end lg:rounded-2xl overflow-hidden"}>
-            <CustomImage src={image} alt={"Project name"} classes={classes}/>
+            <CustomImage src={image} alt={projectName ? projectName : ""} classes={classes}/>
             <div className={"w-full lg:hidden block absolute top-0 left-1/2 -translate-x-1/2 pt-[30px]"}>
                 <div className={"w-full relative flex justify-center items-center"}>
                     <div className={"text-primary-white"}>
-                        <p className={"text-primary-white opacity-60"}>{projectName}</p>
+                        {
+                            projectName ? <p className={"text-primary-white opacity-60"}>{projectName}</p> : null
+                        }
                         <p>{place}</p>
                     </div>
                     <div
@@ -84,7 +86,7 @@ export const ImageBanner = ({image, projectName, place, parameters, url, classes
                                 </button>
                             </li>
                             {
-                                parameters ? parameters.map((parameter) => <ParameterItem parameter={parameter}/>) : null
+                                parameters ? parameters.map((parameter) => <ParameterItem parameter={parameter} key={"success-" + parameter.id}/>) : null
                             }
                         </ul>
                     </div>

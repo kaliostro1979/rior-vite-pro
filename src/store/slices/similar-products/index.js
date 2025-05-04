@@ -13,8 +13,8 @@ const similarProducts = createSlice({
     reducers: {
         setSelectedProductSimilarProducts: (state, action) => {
             if (action.payload){
-                state.similarProducts = action.payload.similarProducts
-                state.parentID = action.payload.id
+                state.similarProducts = action.payload.related_products
+                state.parentID = action.payload.id                
             }
         },
         openSimilarProductsModal: (state)=>{

@@ -6,7 +6,7 @@ import {CustomImage, CustomInput} from "@/Components/ui/index.js";
 import {useEffect} from "react";
 
 export const DetailsModal = (props) => {
-    const {modalIsOpen, callback} = props
+    const {modalIsOpen, callback, data} = props    
 
     useEffect(() => {
         if(modalIsOpen){
@@ -27,12 +27,12 @@ export const DetailsModal = (props) => {
                 </div>
                 <div className={"grid lg:grid-cols-2 grid-cols-1 items-center justify-center gap-x-[72px] lg:gap-y-0 gap-y-6 p-6 lg:w-auto w-full"}>
                     <div className={"lg:max-w-[440px] max-w-full flex flex-col gap-y-4"}>
-                        <CustomInput label={"Project Name"} value={"MyDream Home"} type={"text"} disabled={true} customClass={"lg:hidden inline-block"}/>
+                        <CustomInput label={"Project Name"} value={data?.name} type={"text"} disabled={true} customClass={"lg:hidden inline-block"}/>
                         <div className={"lg:aspect-[22/19] aspect-[329/152] w-full relative lg:rounded-2xl  rounded-lg overflow-hidden"}>
-                            <CustomImage src={MainImage} alt={"Design image"} classes={"absolute top-0 left-0 w-full h-full object-cover object-center"}/>
+                            <CustomImage src={import.meta.env.VITE_BASE_URL + data?.design_image_url} alt={"Design image"} classes={"absolute top-0 left-0 w-full h-full object-cover object-center"}/>
                         </div>
                         <div className={"lg:aspect-[11/4] aspect-[329/155] flex flex-col items-center justify-center bg-gray-medium-light lg:rounded-2xl rounded-lg overflow-hidden lg:border-0 border border-dashed"}>
-                            <CustomImage src={FloorPlan} alt={"Floor plan"}/>
+                            <CustomImage src={import.meta.env.VITE_BASE_URL + data?.floor_plan_image} alt={"Floor plan"}/>
                         </div>
                     </div>
                     <div className={"lg:min-w-[440px] lg:max-w-[440px] max-w-full"}>
@@ -45,10 +45,10 @@ export const DetailsModal = (props) => {
                             </button>
                         </div>
                         <div className={"flex flex-col gap-y-6"}>
-                            <CustomInput label={"Total price"} value={"$2540"} type={"text"} disabled={true} customClass={"font-bold"}/>
-                            <CustomInput label={"Project Name"} value={"MyDream Home"} type={"text"} disabled={true} customClass={"lg:inline-block hidden"}/>
-                            <CustomInput label={"Sealing Height"} value={2.7} type={"number"} disabled={true}/>
-                            <CustomInput label={"Door Width"} value={0.9} type={"number"} disabled={true}/>
+                            <CustomInput label={"Total price"} value={data?.total_price} type={"text"} disabled={true} customClass={"font-bold"}/>
+                            <CustomInput label={"Project Name"} value={data?.name} type={"text"} disabled={true} customClass={"lg:inline-block hidden"}/>
+                            <CustomInput label={"Sealing Height"} value={data?.ceiling_height} type={"number"} disabled={true}/>
+                            <CustomInput label={"Door Height"} value={data?.door_height} type={"number"} disabled={true}/>
                         </div>
                     </div>
                 </div>

@@ -170,7 +170,7 @@ export const submitWizardData = createAsyncThunk(
             const response = await api.post("/api/design-requests/", formData);
             
             if(response){
-                localStorage.setItem("slug", response.data?.slug)
+                localStorage.setItem("slug", response.data?.data)
             }
             
             dispatch(setSubmitted(true));
@@ -187,7 +187,7 @@ export const submitWizardData = createAsyncThunk(
 export const fetchUserData = createAsyncThunk(
     ACTION_NAME_FETCH_USER_DATA,
     async (slug, {dispatch, getState, rejectWithValue}) => {
-        try {
+        try {            
             dispatch(setSubmitting(true));
 
             const state = getState().stepWizard;

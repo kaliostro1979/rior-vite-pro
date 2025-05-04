@@ -11,7 +11,7 @@ const initialState = {
     designUrl: null,
 
     details: {
-        project_name: '',
+        name: '',
         ceiling_height: '',
         door_height: '',
     },
